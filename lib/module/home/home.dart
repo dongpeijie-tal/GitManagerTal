@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gitlabtal/module/home/state/state_widget.dart';
+import 'package:gitlabtal/module/login/login.dart';
+import 'package:gitlabtal/module/repository/repository.dart';
 import '../../data/ProjectEntity.dart';
 import 'card_item.dart';
 import 'controller/home_controller.dart';
@@ -27,19 +29,35 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     HomeController controller = Get.find();
-    int crossAxisCount = (MediaQuery.of(context).size.width / 200).floor();
-    return Obx(
-      () => GridView.builder(
-          itemCount: controller.entities.length,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: crossAxisCount, // 这里设置列数，你可以根据需要进行修改
-            mainAxisSpacing: 10.0, // 主轴方向间距
-            crossAxisSpacing: 10.0, // 横轴方向间距
-            // childAspectRatio: 0.5, // 子组件宽高长度比例
+    return Column(
+      children: [
+        Padding(
+            padding: const EdgeInsets.fromLTRB(10, 15, 10, 15),
+            child: Row(
+              children: [
+                IconButton.outlined(onPressed: (){
+                  // 退出账号
+                  controller.clearUser();
+                  Get.off(const LoginWidget());
+                }, icon: const Icon(Icons.exit_to_app)),
+                const Text(
+                  "关注的仓库",
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                ),
+                const Spacer(),
+                IconButton(icon: const Icon(Icons.control_point_sharp),onPressed: (){Get.to(const RepositoryWidget());},)
+              ],
+            )),
+        Expanded(
+          child: Obx(
+            () => ListView.builder(
+                itemCount: controller.entities.length,
+                itemBuilder: (context, index) {
+                  return _buildItem(controller.entities[index], controller);
+                }),
           ),
-          itemBuilder: (context, index) {
-            return _buildItem(controller.entities[index], controller);
-          }),
+        ),
+      ],
     );
   }
 
