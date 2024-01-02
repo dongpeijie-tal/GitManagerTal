@@ -32,7 +32,7 @@ class Home extends StatelessWidget {
       () => GridView.builder(
           itemCount: controller.entities.length,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: crossAxisCount, // 这里设置列数，你可以根据需要进行修改
+            crossAxisCount: crossAxisCount, // 列数
             mainAxisSpacing: 10.0, // 主轴方向间距
             crossAxisSpacing: 10.0, // 横轴方向间距
             // childAspectRatio: 0.5, // 子组件宽高长度比例

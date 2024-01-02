@@ -12,7 +12,15 @@ class EmptyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return const Center(
+      child:
+        Column(
+          children: [
+            Text("什么都没有的空间"),
+            Icon(Icons.dashboard),
+          ],
+        )
+    );
   }
 }
 
@@ -22,7 +30,23 @@ class ErrorInnerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Center(
+        child:
+        Column(
+          children: [
+            const Text("发生了错误"),
+            Row(children: [
+              IconButton(onPressed: (){
+                refreshMethod();
+              }, icon: const Icon(Icons.refresh))
+            ],),
+          ],
+        )
+    );
+  }
+
+  void refreshMethod(){
+
   }
 }
 
@@ -32,6 +56,13 @@ class LoadingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return const Center(
+      child: Column(
+        children: [
+          CircularProgressIndicator(),
+          Text("疯狂加载中"),
+        ],
+      ),
+    );
   }
 }
