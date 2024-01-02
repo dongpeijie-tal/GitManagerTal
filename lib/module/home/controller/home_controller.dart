@@ -1,5 +1,4 @@
 
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:gitlabtal/data/ProjectEntity.dart';
@@ -20,7 +19,8 @@ class HomeController extends GetxController with StateMixin<HomeState>{
   }
 
   Future<void> fetchData() async{
-    final Response response = await provider.getUser({"PRIVATE-TOKEN" : box.read(TOKEN_SIGN)});
+    final Response response = await provider.getUser({"private_token" : "xL8AdreZ2HZ4EA5SP-pw","per_page":"10"});
+    // final Response response = await provider.getUser({"PRIVATE-TOKEN" : box.read(TOKEN_SIGN)});
     List<ProjectEntity> entitiesTemp = [];
     for (var element in response.body) {
       entitiesTemp.add(ProjectEntity.fromJson(element));
@@ -35,19 +35,10 @@ class HomeController extends GetxController with StateMixin<HomeState>{
       change(null,status: RxStatus.error(response.bodyString));
     }
     entities.addAll(entitiesTemp);
+    print("数量=${entities.length}");
   }
 
-  // Future<void> insertHasEntity(ProjectEntity element) async{
-  //   hasEntities.add(element);
-  // }
-
-  // Future<void> removeEntity({int? index,ProjectEntity? element}) async{
-  //   if(index != null){
-  //     entities.removeAt(index);
-  //   }
-  //   if(element != null){
-  //     hasEntities.add(element);
-  //     entities.remove(element);
-  //   }
-  // }
+  void clearUser(){
+    box.remove(TOKEN_SIGN);
+  }
 }

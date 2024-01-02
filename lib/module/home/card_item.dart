@@ -19,44 +19,52 @@ class CardItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+        elevation: 2,
+        shadowColor: Colors.tealAccent,
         // 使用Card作为背景
         child: Padding(
-      padding: const EdgeInsets.symmetric(vertical: 7.0, horizontal: 5.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Row(
-            children: [
-              IconButton(
-                iconSize: 20.0,
-                color: Colors.black,
-                icon: const Icon(Icons.add),
-                onPressed: () {
-                  // controller.removeEntity(element: item);
-                  popGitClone(item.sshUrlToRepo);
-                },
+          padding: const EdgeInsets.symmetric(vertical: 7.0, horizontal: 5.0),
+          child: Row(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(5),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(item.name ?? "未命名",
+                        style: const TextStyle(
+                            color: Colors.blue,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold)
+                        ),
+                    Text("地址：${item.httpUrlToRepo ?? "无"}",
+                        style: const TextStyle(
+                            color: Colors.black87, fontSize: 12)),
+                    Text("简介：${item.description ?? "无"}",
+                        style: const TextStyle(
+                            color: Colors.black87, fontSize: 12)),
+                    Text("文件夹：${item.createdAt ?? "无"}",
+                        style: const TextStyle(
+                            color: Colors.black87, fontSize: 12)),
+                  ],
+                ),
+              ),
+              const Spacer(),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 3.0),
+                child: OutlinedButton(onPressed: () {popGitClone(item.sshUrlToRepo);}, child: const Text("克隆clone")),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 3.0),
+                child: OutlinedButton(onPressed: () {}, child: const Text("拉取fetch")),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 3.0),
+                child: OutlinedButton(onPressed: () {}, child: const Text("同步pull")),
               ),
             ],
           ),
-          Center(
-            child: Padding(
-              // 给项目名称添加padding
-              padding: EdgeInsets.all(4),
-              child: Text(item.name ?? "未命名",
-                  style: const TextStyle(
-                      color: Colors.blue,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold) // 设置项目名称的字体大小和粗细
-                  ),
-            ),
-          ),
-          Padding(
-              // 给简介添加padding
-              padding: EdgeInsets.all(5),
-              child: Text("简介：${item.description ?? "无"}")),
-        ],
-      ),
-    ));
+        ));
   }
 
   void popGitClone(String? sshUrlToRepo) async {
@@ -65,17 +73,15 @@ class CardItem extends StatelessWidget {
       // Operation was canceled by the user.
       return;
     }
-    if(sshUrlToRepo == null || sshUrlToRepo.isEmpty){
+    if (sshUrlToRepo == null || sshUrlToRepo.isEmpty) {
       Get.snackbar("错误", "该仓库没有ssh地址。");
       return;
     }
-    Get.dialog(GitCloneWidget(sshUrlToRepo,directoryPath));
+    Get.dialog(GitCloneWidget(sshUrlToRepo, directoryPath));
   }
-
 }
 
 class GitCloneWidget extends StatelessWidget {
-
   final String path;
   final String directoryPath;
 
@@ -83,7 +89,7 @@ class GitCloneWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    cloneRepo(path,directoryPath);
+    cloneRepo(path, directoryPath, () {}, (msg) {});
     return AlertDialog(
       title: Text("Cloning..."),
       content: Container(child: CircularProgressIndicator()),
