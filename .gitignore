@@ -31,7 +31,9 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
-
+macos/Podfile
+macos/Podfile.lock
+macos/Runner/DebugProfile.entitlements
 # Symbolication related
 app.*.symbols
 
