@@ -1,16 +1,16 @@
 # gitlabtal
 
-gitlab helper!
+好未来代码管理工具
 
-## Getting Started
+## 如何使用
 
-This project is a starting point for a Flutter application.
+目前仅支持macos windows平台，以应用程序方式运行
+请在release自取所需版本
 
-A few resources to get you started if this is your first Flutter project:
+## 功能点
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- 添加自己关注仓库
+- 仓库代码clone、pull、fetch
+- 指定仓库存储文件夹
+- 可根据关注仓库配置xml文件（目前仅仅支持android wx项目）
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
