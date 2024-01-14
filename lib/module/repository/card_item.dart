@@ -45,7 +45,9 @@ class RepositoryCardItem extends StatelessWidget {
               const Spacer(),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 3.0),
-                child: OutlinedButton(onPressed: () {}, child: const Text("添加")),
+                child: OutlinedButton(onPressed: () {
+                  controller.saveProject(item);
+                }, child: const Text("添加")),
               ),
             ],
           ),

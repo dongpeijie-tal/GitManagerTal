@@ -12,6 +12,7 @@ class LoadingInnerWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           CircularProgressIndicator(),
+          SizedBox(height: 10),
           Text("疯狂加载中"),
         ],
       ),

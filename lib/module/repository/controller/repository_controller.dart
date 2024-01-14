@@ -33,6 +33,11 @@ class RepositoryController extends GetxController with StateMixin<RepositoryStat
     }
     projects.addAll(entitiesTemp);
   }
+
+  /// 保存到关注项目
+  void saveProject(ProjectEntity item) {
+
+  }
 }
 
 /// 被观察的状态
