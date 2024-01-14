@@ -3,28 +3,34 @@ import 'package:get/get.dart';
 import 'package:gitlabtal/module/home/state/state_widget.dart';
 import 'package:gitlabtal/module/login/login.dart';
 import 'package:gitlabtal/module/repository/repository.dart';
+import 'package:gitlabtal/route/route_const.dart';
+import '../../custom/widget/empty_widget.dart';
+import '../../custom/widget/error_widget.dart';
+import '../../custom/widget/loading_widget.dart';
 import '../../data/ProjectEntity.dart';
 import 'card_item.dart';
 import 'controller/home_controller.dart';
 
-class HomeWidget extends GetView<HomeController> {
-  const HomeWidget({super.key});
+/// 主页的包装页
+class HomeWrapperWidget extends GetView<HomeController> {
+  const HomeWrapperWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: controller.obx(
-        (state) => const Home(),
-        onLoading: const LoadingWidget(),
-        onEmpty: const EmptyWidget(),
+        (state) => const HomeWidget(),
+        onLoading: const LoadingInnerWidget(),
+        onEmpty: const EmptyInnerWidget(),
         onError: (error) => const ErrorInnerWidget(),
       ),
     );
   }
 }
 
-class Home extends StatelessWidget {
-  const Home({super.key});
+/// 主页
+class HomeWidget extends StatelessWidget {
+  const HomeWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +51,7 @@ class Home extends StatelessWidget {
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                 ),
                 const Spacer(),
-                IconButton(icon: const Icon(Icons.control_point_sharp),onPressed: (){Get.to(const RepositoryWidget());},)
+                IconButton(icon: const Icon(Icons.control_point_sharp),onPressed: (){Get.toNamed(routeRepository);},)
               ],
             )),
         Expanded(

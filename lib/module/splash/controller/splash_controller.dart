@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:gitlabtal/top/bean/top_const.dart';
+import 'package:gitlabtal/top/bean/git_const.dart';
 
 class SplashController extends GetxController {
   final box = GetStorage();

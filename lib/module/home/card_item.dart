@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gitlabtal/data/ProjectEntity.dart';
 
-import '../../top/method/top_method.dart';
+import '../../top/method/git_method.dart';
 import 'controller/home_controller.dart';
 
 class CardItem extends StatelessWidget {

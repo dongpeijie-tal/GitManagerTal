@@ -37,7 +37,7 @@ class LoginWidget extends StatelessWidget {
                   ElevatedButton(onPressed:(() {
                     // 在这里添加按钮点击时需要执行的代码
                     controller.putUserToken(editController.text);
-                    Get.off(const HomeWidget(),binding: HomeBinding());
+                    Get.off(const HomeWrapperWidget(),binding: HomeBinding());
                   }),
                       style:ElevatedButton.styleFrom(shape:RoundedRectangleBorder(borderRadius:BorderRadius.circular(30.0)), foregroundColor :Colors.blue,),
                       child:const Text('Confirm')

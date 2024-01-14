@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:gitlabtal/data/ProjectEntity.dart';
 import 'package:gitlabtal/provider/user_provider.dart';
-import 'package:gitlabtal/top/bean/top_const.dart';
+import 'package:gitlabtal/top/bean/git_const.dart';
 import '../state/state_widget.dart';
 
 class HomeController extends GetxController with StateMixin<HomeState>{
@@ -35,7 +35,6 @@ class HomeController extends GetxController with StateMixin<HomeState>{
       change(null,status: RxStatus.error(response.bodyString));
     }
     entities.addAll(entitiesTemp);
-    print("数量=${entities.length}");
   }
 
   void clearUser(){
