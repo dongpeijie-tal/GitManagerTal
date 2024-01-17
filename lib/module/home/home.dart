@@ -41,17 +41,36 @@ class HomeWidget extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(10, 15, 10, 15),
             child: Row(
               children: [
-                IconButton.outlined(onPressed: (){
-                  // 退出账号
-                  controller.clearUser();
-                  Get.off(const LoginWidget());
-                }, icon: const Icon(Icons.exit_to_app)),
+                IconButton.outlined(
+                    onPressed: () {
+                      // 退出账号
+                      controller.clearUser();
+                      Get.off(const LoginWidget());
+                    },
+                    icon: const Icon(Icons.exit_to_app)),
                 const Text(
                   "关注的仓库",
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                 ),
                 const Spacer(),
-                IconButton(icon: const Icon(Icons.control_point_sharp),onPressed: (){Get.toNamed(routeRepository);},)
+                FilledButton(
+                  onPressed: () {},
+                  child: const Text("克隆所有仓库"),
+                ),
+                FilledButton(
+                  onPressed: () {},
+                  child: const Text("拉取所有仓库"),
+                ),
+                FilledButton(
+                  onPressed: () {},
+                  child: const Text("同步所有仓库"),
+                ),
+                FilledButton.icon(
+                    onPressed: () {
+                      Get.toNamed(routeRepository);
+                    },
+                    icon: const Icon(Icons.control_point_sharp),
+                    label: Text("代码仓库"))
               ],
             )),
         Expanded(

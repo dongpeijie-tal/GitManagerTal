@@ -12,7 +12,6 @@ import 'module/splash/splash.dart';
 
 void main() async {
   await GetStorage.init();
-  ();
   runApp(GetMaterialApp(
     theme: ThemeData(
       textTheme: const TextTheme(
