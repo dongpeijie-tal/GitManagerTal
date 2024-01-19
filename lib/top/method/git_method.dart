@@ -8,7 +8,8 @@ void cloneRepo(
   void Function() successBlock,
   void Function(String msg) failBlock,
 ) async {
-  final process = await Process.start('git', ['clone', path],workingDirectory: dirPath);
+  final process =
+      await Process.start('git', ['clone', path], workingDirectory: dirPath);
   final outputMsg = await process.stdout.transform(utf8.decoder).join();
   final errorOutputMsg = await process.stderr.transform(utf8.decoder).join();
   int code = await process.exitCode;
@@ -26,7 +27,8 @@ void pullRepo(
   void Function() successBlock,
   void Function(String msg) failBlock,
 ) async {
-  final process = await Process.start('git', ['pull', path],workingDirectory: dirPath);
+  final process =
+      await Process.start('git', ['pull', path], workingDirectory: dirPath);
   final outputMsg = await process.stdout.transform(utf8.decoder).join();
   final errorOutputMsg = await process.stderr.transform(utf8.decoder).join();
   int code = await process.exitCode;
@@ -44,7 +46,8 @@ void fetchRepo(
   void Function() successBlock,
   void Function(String msg) failBlock,
 ) async {
-  final process = await Process.start('git', ['fetch', path],workingDirectory: dirPath);
+  final process =
+      await Process.start('git', ['fetch', path], workingDirectory: dirPath);
   final outputMsg = await process.stdout.transform(utf8.decoder).join();
   final errorOutputMsg = await process.stderr.transform(utf8.decoder).join();
   int code = await process.exitCode;

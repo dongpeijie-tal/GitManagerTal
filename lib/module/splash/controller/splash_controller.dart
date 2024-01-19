@@ -27,5 +27,4 @@ class SplashController extends GetxController {
   void saveUserToken(String value) {
     box.write(TOKEN_SIGN, value);
   }
-
 }

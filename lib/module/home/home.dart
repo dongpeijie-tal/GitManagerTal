@@ -41,17 +41,24 @@ class HomeWidget extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(10, 15, 10, 15),
             child: Row(
               children: [
-                IconButton.outlined(onPressed: (){
-                  // 退出账号
-                  controller.clearUser();
-                  Get.off(const LoginWidget());
-                }, icon: const Icon(Icons.exit_to_app)),
+                IconButton.outlined(
+                    onPressed: () {
+                      // 退出账号
+                      controller.clearUser();
+                      Get.off(const LoginWidget());
+                    },
+                    icon: const Icon(Icons.exit_to_app)),
                 const Text(
                   "关注的仓库",
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                 ),
                 const Spacer(),
-                IconButton(icon: const Icon(Icons.control_point_sharp),onPressed: (){Get.toNamed(routeRepository);},)
+                IconButton(
+                  icon: const Icon(Icons.control_point_sharp),
+                  onPressed: () {
+                    Get.toNamed(routeRepository);
+                  },
+                )
               ],
             )),
         Expanded(

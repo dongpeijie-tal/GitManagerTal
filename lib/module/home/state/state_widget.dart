@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 
 /// Home页面状态
-class HomeState{
+class HomeState {
   bool hasMore;
   HomeState(this.hasMore);
 }
-
-
-
-

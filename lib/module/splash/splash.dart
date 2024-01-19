@@ -22,7 +22,13 @@ class SplashWidget extends StatelessWidget {
       body: Container(
         color: Colors.white,
         child: const Center(
-          child: Text("HAL-Git",style: TextStyle(color: Colors.lightBlue,fontSize: 40,fontWeight: FontWeight.w800),),
+          child: Text(
+            "HAL-Git",
+            style: TextStyle(
+                color: Colors.lightBlue,
+                fontSize: 40,
+                fontWeight: FontWeight.w800),
+          ),
         ),
       ),
     );
