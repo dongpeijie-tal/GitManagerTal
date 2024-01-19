@@ -1,41 +1,58 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:gitlabtal/utils/file.dart';
 
-/// clone代码
 void cloneRepo(
-  String path,
-  String dirPath,
-  void Function() successBlock,
-  void Function(String msg) failBlock,
-) async {
-  final process =
-      await Process.start('git', ['clone', path], workingDirectory: dirPath);
-  final outputMsg = await process.stdout.transform(utf8.decoder).join();
-  final errorOutputMsg = await process.stderr.transform(utf8.decoder).join();
+    String path,
+    String dirPath,
+    void Function() successBlock,
+    void Function(String msg) failBlock,
+    ) async {
+  // 构建命令
+  final process = await Process.start('git', ['clone', path], workingDirectory: dirPath);
+  // 创建一个Future来处理stderr
+  String stderrOutput = '';
+  await for (var data in process.stderr.transform(utf8.decoder)) {
+    stderrOutput += data;
+  }
+  // 结果码
   int code = await process.exitCode;
+  // 0 = 成功
   if (code == 0) {
     successBlock();
   } else {
-    failBlock("$outputMsg\n error msg= \n $errorOutputMsg");
+    print(stderrOutput);
+    failBlock(stderrOutput);
   }
 }
 
+void appendLog(String logPath, String message) {
+  FileUtils().write(message, logPath, FileMode.append);
+}
 /// 同步代码
 void pullRepo(
-  String path,
-  String dirPath,
-  void Function() successBlock,
-  void Function(String msg) failBlock,
-) async {
-  final process =
-      await Process.start('git', ['pull', path], workingDirectory: dirPath);
-  final outputMsg = await process.stdout.transform(utf8.decoder).join();
-  final errorOutputMsg = await process.stderr.transform(utf8.decoder).join();
+    String path,
+    String dirPath,
+    void Function(String msg) successBlock,
+    void Function(String msg) failBlock,
+    ) async {
+  final process = await Process.start('git', ['pull','--no-commit','--no-ff','--verbose','--depth=10', path],workingDirectory: dirPath);
+  String stdouput = '';
+  await for (var data in process.stdout.transform(utf8.decoder)) {
+    stdouput += data;
+  }
+  // 创建一个Future来处理stderr
+  String stderrOutput = '';
+  await for (var data in process.stderr.transform(utf8.decoder)) {
+    stderrOutput += data;
+  }
+  // 结果码
   int code = await process.exitCode;
+  // 0 = 成功
   if (code == 0) {
-    successBlock();
+    successBlock(stdouput);
   } else {
-    failBlock("$outputMsg\n error msg= \n $errorOutputMsg");
+    failBlock(stderrOutput);
   }
 }
 
@@ -43,17 +60,25 @@ void pullRepo(
 void fetchRepo(
   String path,
   String dirPath,
-  void Function() successBlock,
+  void Function(String msg) successBlock,
   void Function(String msg) failBlock,
 ) async {
-  final process =
-      await Process.start('git', ['fetch', path], workingDirectory: dirPath);
-  final outputMsg = await process.stdout.transform(utf8.decoder).join();
-  final errorOutputMsg = await process.stderr.transform(utf8.decoder).join();
+  final process = await Process.start('git', ['fetch','--prune','--verbose', path],workingDirectory: dirPath);
+  String stdouput = '';
+  await for (var data in process.stdout.transform(utf8.decoder)) {
+    stdouput += data;
+  }
+  // 创建一个Future来处理stderr
+  String stderrOutput = '';
+  await for (var data in process.stderr.transform(utf8.decoder)) {
+    stderrOutput += data;
+  }
+  // 结果码
   int code = await process.exitCode;
+  // 0 = 成功
   if (code == 0) {
-    successBlock();
+    successBlock(stdouput);
   } else {
-    failBlock("$outputMsg\n error msg= \n $errorOutputMsg");
+    failBlock(stderrOutput);
   }
 }

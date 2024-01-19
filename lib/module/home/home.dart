@@ -53,12 +53,24 @@ class HomeWidget extends StatelessWidget {
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                 ),
                 const Spacer(),
-                IconButton(
-                  icon: const Icon(Icons.control_point_sharp),
-                  onPressed: () {
-                    Get.toNamed(routeRepository);
-                  },
-                )
+                FilledButton(
+                  onPressed: () {},
+                  child: const Text("克隆所有仓库"),
+                ),
+                FilledButton(
+                  onPressed: () {},
+                  child: const Text("拉取所有仓库"),
+                ),
+                FilledButton(
+                  onPressed: () {},
+                  child: const Text("同步所有仓库"),
+                ),
+                FilledButton.icon(
+                    onPressed: () {
+                      Get.toNamed(routeRepository);
+                    },
+                    icon: const Icon(Icons.control_point_sharp),
+                    label: Text("代码仓库"))
               ],
             )),
         Expanded(
