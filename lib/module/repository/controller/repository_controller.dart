@@ -5,6 +5,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:gitlabtal/custom/dialog/prgress.dart';
 import 'package:gitlabtal/data/LocalProject.dart';
 import 'package:gitlabtal/storage/databases/hive/hive_helper.dart';
+import 'package:material_dialogs/dialogs.dart';
 import '../../../data/ProjectEntity.dart';
 import '../../../provider/repository_provider.dart';
 
@@ -35,7 +36,8 @@ class RepositoryController extends GetxController{
   /// 保存到关注项目
   Future<void> saveProject(ProjectEntity item) async {
     if (item.id == null) {
-      Get.defaultDialog(title: "内部错误,此项目没有ID,无法关注。");
+      Dialogs.materialDialog(context: Get.context!,title: "内部错误,此项目没有ID,无法关注。");
+      // Get.defaultDialog(title: "内部错误,此项目没有ID,无法关注。");
       return;
     }
     var localProject = LocalProject(item.id!,

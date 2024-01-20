@@ -6,14 +6,14 @@ class LoadingInnerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
+    return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          CircularProgressIndicator(),
-          SizedBox(height: 10),
-          Text("疯狂加载中"),
+          const CircularProgressIndicator(),
+          const SizedBox(height: 10),
+          Text("疯狂加载中",style: Theme.of(context).textTheme.bodyMedium,),
         ],
       ),
     );

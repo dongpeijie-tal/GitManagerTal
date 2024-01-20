@@ -3,7 +3,11 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:gitlabtal/module/home/binding/home_binding.dart';
 import 'package:gitlabtal/module/home/home.dart';
+import 'package:gitlabtal/module/search/binding/search_binding.dart';
+import 'package:gitlabtal/module/search/search.dart';
 import 'package:gitlabtal/route/route_const.dart';
+import 'package:gitlabtal/theme/color_style.dart';
+import 'package:gitlabtal/theme/theme.dart';
 import 'module/login/login.dart';
 import 'module/repository/binding/repository_binding.dart';
 import 'module/repository/repository.dart';
@@ -13,22 +17,9 @@ import 'module/splash/splash.dart';
 void main() async {
   await GetStorage.init();
   runApp(GetMaterialApp(
-    theme: ThemeData(
-      textTheme: const TextTheme(
-        bodyLarge: TextStyle(
-            color: Colors.black87,
-            fontSize: 20,
-            decoration: TextDecoration.none),
-        bodyMedium: TextStyle(
-            color: Colors.black87,
-            fontSize: 18,
-            decoration: TextDecoration.none),
-        bodySmall: TextStyle(
-            color: Colors.black87,
-            fontSize: 14,
-            decoration: TextDecoration.none),
-      ),
-    ),
+    theme: AppTheme.lightThemeData,
+    themeMode: ThemeMode.dark,
+    darkTheme: AppTheme.darkThemeData,
     initialRoute: routeHome,
     getPages: [
       GetPage(
@@ -47,6 +38,10 @@ void main() async {
           name: routeRepository,
           page: () => const RepositoryWrapperWidget(),
           binding: RepositoryBinding()),
+      GetPage(
+          name: routeSearch,
+          page: () => const SearchWrapperWidget(),
+          binding: SearchBinding()),
     ],
   ));
 }

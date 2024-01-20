@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gitlabtal/custom/widget/error_widget.dart';
 import 'package:gitlabtal/module/repository/controller/repository_controller.dart';
+import 'package:gitlabtal/route/route_const.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import '../../custom/widget/empty_widget.dart';
@@ -74,6 +75,12 @@ class _RepositoryWidgetState extends State<RepositoryWidget> {
                 const Spacer(),
                 FilledButton.icon(
                     onPressed: () {
+                      Get.toNamed(routeSearch);
+                    },
+                    icon: const Icon(Icons.search),
+                    label: const Text("搜索")),
+                FilledButton.icon(
+                    onPressed: () {
                       _pagingController.refresh();
                     },
                     icon: const Icon(Icons.refresh),
@@ -81,13 +88,14 @@ class _RepositoryWidgetState extends State<RepositoryWidget> {
               ],
             )),
         Expanded(
-          child: PagedListView<int, ProjectEntity>(
-              pagingController: _pagingController,
-              builderDelegate: PagedChildBuilderDelegate<ProjectEntity>(
-                itemBuilder: (context, item, index) =>
-                    _buildItem(item, controller),
-              ),
+          child: Padding(padding: const EdgeInsets.symmetric(horizontal: 10),child: PagedListView<int, ProjectEntity>(
+            pagingController: _pagingController,
+            builderDelegate: PagedChildBuilderDelegate<ProjectEntity>(
+              itemBuilder: (context, item, index) =>
+                  _buildItem(item, controller),
+                firstPageProgressIndicatorBuilder:(context) => const LoadingInnerWidget(),
             ),
+          ),),
         ),
       ],
     );

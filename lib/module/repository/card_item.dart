@@ -15,8 +15,6 @@ class RepositoryCardItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-        elevation: 2,
-        shadowColor: Colors.tealAccent,
         // 使用Card作为背景
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 7.0, horizontal: 5.0),
@@ -28,16 +26,12 @@ class RepositoryCardItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(item.name ?? "未命名",
-                        style: const TextStyle(
-                            color: Colors.blue,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold)),
+                        style: Theme.of(context).textTheme.titleLarge),
+                    const SizedBox(height: 5,),
                     Text("地址：${item.httpUrlToRepo ?? "无"}",
-                        style: const TextStyle(
-                            color: Colors.black87, fontSize: 12)),
+                        style: Theme.of(context).textTheme.bodySmall),
                     Text("简介：${item.description ?? "无"}",
-                        style: const TextStyle(
-                            color: Colors.black87, fontSize: 12)),
+                        style: Theme.of(context).textTheme.bodySmall),
                   ],
                 ),
               ),
@@ -45,11 +39,11 @@ class RepositoryCardItem extends StatelessWidget {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: 0.0, horizontal: 3.0),
-                child: OutlinedButton(
+                child: FilledButton(
                     onPressed: () {
                       controller.saveProject(item);
                     },
-                    child: const Text("添加")),
+                    child: Text("添加",style: Theme.of(context).textTheme.labelMedium,)),
               ),
             ],
           ),

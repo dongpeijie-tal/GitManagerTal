@@ -18,8 +18,6 @@ class CardItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-        elevation: 2,
-        shadowColor: Colors.tealAccent,
         // 使用Card作为背景
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 7.0, horizontal: 5.0),
@@ -31,26 +29,20 @@ class CardItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(item.name ?? "未命名",
-                        style: const TextStyle(
-                            color: Colors.blue,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold)),
+                        style: Theme.of(context).textTheme.titleLarge),
                     Text("地址：${item.httpUrlToRepo ?? "无"}",
-                        style: const TextStyle(
-                            color: Colors.black87, fontSize: 12)),
+                        style: Theme.of(context).textTheme.bodySmall),
                     Text("简介：${item.description ?? "无"}",
-                        style: const TextStyle(
-                            color: Colors.black87, fontSize: 12)),
+                        style: Theme.of(context).textTheme.bodySmall),
                     Text("文件夹：${item.createdAt ?? "无"}",
-                        style: const TextStyle(
-                            color: Colors.black87, fontSize: 12)),
+                        style: Theme.of(context).textTheme.bodySmall),
                   ],
                 ),
               ),
               const Spacer(),
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(vertical: 0.0, horizontal: 3.0),
+                    const EdgeInsets.symmetric(vertical: 0.0, horizontal: 1.0),
                 child: OutlinedButton(
                     onPressed: () {
                       _gitClone(item.sshUrlToRepo);
@@ -59,7 +51,7 @@ class CardItem extends StatelessWidget {
               ),
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(vertical: 0.0, horizontal: 3.0),
+                    const EdgeInsets.symmetric(vertical: 0.0, horizontal: 1.0),
                 child: OutlinedButton(
                     onPressed: () {
                       _gitFetch(item.sshUrlToRepo);
@@ -67,7 +59,7 @@ class CardItem extends StatelessWidget {
               ),
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(vertical: 0.0, horizontal: 3.0),
+                    const EdgeInsets.symmetric(vertical: 0.0, horizontal: 1.0),
                 child: OutlinedButton(
                     onPressed: () {
                       _gitPull(item.sshUrlToRepo);

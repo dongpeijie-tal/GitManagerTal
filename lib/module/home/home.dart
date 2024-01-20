@@ -41,7 +41,7 @@ class HomeWidget extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(10, 15, 10, 15),
             child: Row(
               children: [
-                IconButton.outlined(
+                IconButton(
                     onPressed: () {
                       // 退出账号
                       controller.clearUser();
@@ -73,15 +73,17 @@ class HomeWidget extends StatelessWidget {
                     label: Text("代码仓库"))
               ],
             )),
-        Expanded(
+         Expanded(
           child: Obx(
-            () => ListView.builder(
+                () => Padding(padding: const EdgeInsets.symmetric(horizontal: 10),child:
+                ListView.builder(
                 itemCount: controller.entities.length,
                 itemBuilder: (context, index) {
                   return _buildItem(controller.entities[index], controller);
                 }),
           ),
-        ),
+        ),)
+        ,
       ],
     );
   }

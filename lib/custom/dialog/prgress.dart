@@ -2,9 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:material_dialogs/material_dialogs.dart';
 
 Future<void> showProgressDialog(String successTitle,String failTitle,String successText,String failText,Future<bool> Function() runner)async{
   // 显示加载对话框
+  // Dialogs.materialDialog(context: Get.context!,title: "内部错误,此项目没有ID,无法关注。");
   Get.dialog(
     const Center(
       child: CircularProgressIndicator(),
