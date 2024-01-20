@@ -1,4 +1,4 @@
-import 'package:file_selector/file_selector.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gitlabtal/data/ProjectEntity.dart';
@@ -79,7 +79,7 @@ class CardItem extends StatelessWidget {
   }
   /// 克隆实现
   void _gitClone(String? sshUrlToRepo) async {
-    final String? directoryPath = await getDirectoryPath();
+    final String? directoryPath = await FilePicker.platform.getDirectoryPath();
     if (directoryPath == null) {
       return;
     }
@@ -101,7 +101,7 @@ class CardItem extends StatelessWidget {
       Get.snackbar("错误", "该仓库没有ssh地址。");
       return;
     }
-    final String? directoryPath = await getDirectoryPath();
+    final String? directoryPath = await FilePicker.platform.getDirectoryPath();
     if (directoryPath == null) {
       return;
     }
@@ -118,7 +118,7 @@ class CardItem extends StatelessWidget {
       Get.snackbar("错误", "该仓库没有ssh地址。");
       return;
     }
-    final String? directoryPath = await getDirectoryPath();
+    final String? directoryPath = await FilePicker.platform.getDirectoryPath();
     if (directoryPath == null) {
       return;
     }
