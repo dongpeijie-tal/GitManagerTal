@@ -1,24 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import 'controller/search_controller.dart';
 
 /// 搜索界面
 class SearchWrapperWidget extends StatelessWidget {
-  const SearchWrapperWidget({super.key});
-
+  SearchWrapperWidget({super.key});
+  SearchProjectController controller = Get.find();
+  TextEditingController textFieldController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: TextField(
-          decoration: InputDecoration(
+          controller: textFieldController,
+          decoration: const InputDecoration(
             hintText: '搜索<项目关键字>',
             border: InputBorder.none,
           ),
         ),
         actions: [
           TextButton(
-            child: Text("搜索"),
+            child: Text("搜索",style: Theme.of(context).textTheme.labelMedium,),
             onPressed: () {
-              // Handle search button press
+              controller.searchProject(textFieldController.text);
             },
           ),
         ],

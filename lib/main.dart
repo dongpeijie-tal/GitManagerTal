@@ -40,7 +40,7 @@ void main() async {
           binding: RepositoryBinding()),
       GetPage(
           name: routeSearch,
-          page: () => const SearchWrapperWidget(),
+          page: () => SearchWrapperWidget(),
           binding: SearchBinding()),
     ],
   ));
