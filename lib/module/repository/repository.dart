@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gitlabtal/custom/widget/error_widget.dart';
 import 'package:gitlabtal/module/repository/controller/repository_controller.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import '../../custom/widget/empty_widget.dart';
 import '../../custom/widget/loading_widget.dart';
@@ -9,36 +10,59 @@ import '../../data/ProjectEntity.dart';
 import 'card_item.dart';
 
 /// 仓库包装页面
-class RepositoryWrapperWidget extends GetView<RepositoryController> {
+class RepositoryWrapperWidget extends StatelessWidget{
   const RepositoryWrapperWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: controller.obx(
-        (state) => const RepositoryWidget(),
-        onLoading: const LoadingInnerWidget(),
-        onEmpty: const EmptyInnerWidget(),
-        onError: (error) => const ErrorInnerWidget(),
-      ),
+    return const Scaffold(
+      body: RepositoryWidget(),
     );
   }
 }
 
 /// 仓库页面
-class RepositoryWidget extends StatelessWidget {
+class RepositoryWidget extends StatefulWidget {
   const RepositoryWidget({super.key});
 
   @override
+  State<RepositoryWidget> createState() => _RepositoryWidgetState();
+}
+
+class _RepositoryWidgetState extends State<RepositoryWidget> {
+  RepositoryController controller = Get.find();
+  final PagingController<int, ProjectEntity> _pagingController =
+      PagingController(firstPageKey: 0,invisibleItemsThreshold: 2);
+  @override
+  void initState() {
+    super.initState();
+    _pagingController.addPageRequestListener((pageKey) {
+      refresh(pageKey);
+    });
+  }
+
+  /// 刷新
+  void refresh(int pageKey) {
+    controller.fetchData(pageKey, loadMoreBlock: (list, havMore) {
+      if (havMore) {
+        _pagingController.appendPage(list, pageKey + 1);
+      } else {
+        _pagingController.appendLastPage(list);
+      }
+    }, errorBlock: () {
+      _pagingController.appendLastPage(List.empty());
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    RepositoryController controller = Get.find();
     return Column(
       children: [
         Padding(
             padding: const EdgeInsets.fromLTRB(10, 15, 10, 15),
             child: Row(
               children: [
-                IconButton.outlined(
+                IconButton(
                     onPressed: () {
                       Get.back();
                     },
@@ -50,20 +74,20 @@ class RepositoryWidget extends StatelessWidget {
                 const Spacer(),
                 FilledButton.icon(
                     onPressed: () {
-                      controller.refreshData();
+                      _pagingController.refresh();
                     },
                     icon: const Icon(Icons.refresh),
                     label: const Text("刷新"))
               ],
             )),
         Expanded(
-          child: Obx(
-            () => ListView.builder(
-                itemCount: controller.projects.length,
-                itemBuilder: (context, index) {
-                  return _buildItem(controller.projects[index], controller);
-                }),
-          ),
+          child: PagedListView<int, ProjectEntity>(
+              pagingController: _pagingController,
+              builderDelegate: PagedChildBuilderDelegate<ProjectEntity>(
+                itemBuilder: (context, item, index) =>
+                    _buildItem(item, controller),
+              ),
+            ),
         ),
       ],
     );

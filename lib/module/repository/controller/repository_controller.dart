@@ -9,27 +9,13 @@ import '../../../data/ProjectEntity.dart';
 import '../../../provider/repository_provider.dart';
 
 /// 仓库页面的控制器 混入 仓库页面状态监听
-class RepositoryController extends GetxController
-    with StateMixin<RepositoryState> {
+class RepositoryController extends GetxController{
   final provider = Get.find<RepositoryProvider>();
-  var projects = List<ProjectEntity>.empty(growable: true).obs;
   final box = GetStorage();
 
-  @override
-  void onInit() {
-    fetchData();
-    super.onInit();
-  }
   /// 刷新数据
-  Future<void> refreshData() async {
-    projects.clear();
-    fetchData();
-    HiveHelper().queryAllLocalProject();
-  }
-
-  Future<void> fetchData() async {
-    final Response response = await provider.getProjects(
-        {"private_token": "xL8AdreZ2HZ4EA5SP-pw", "per_page": "10"});
+  Future<void> fetchData(int pageKey,{void Function(List<ProjectEntity>,bool)? loadMoreBlock,void Function()? errorBlock}) async {
+    final Response response = await provider.getProjects({"private_token": "xL8AdreZ2HZ4EA5SP-pw", 'page': '$pageKey',"per_page": "10"});
     // final Response response = await provider.getUser({"PRIVATE-TOKEN" : box.read(TOKEN_SIGN)});
     List<ProjectEntity> entitiesTemp = [];
     for (var element in response.body) {
@@ -37,14 +23,13 @@ class RepositoryController extends GetxController
     }
     if (!response.hasError) {
       if (entitiesTemp.isEmpty && entitiesTemp.isEmpty) {
-        change(RepositoryState(false), status: RxStatus.empty());
+        loadMoreBlock?.call(entitiesTemp,false);
       } else {
-        change(RepositoryState(true), status: RxStatus.success());
+        loadMoreBlock?.call(entitiesTemp,true);
       }
-    } else {
-      change(null, status: RxStatus.error(response.bodyString));
+    }else{
+      errorBlock?.call();
     }
-    projects.addAll(entitiesTemp);
   }
 
   /// 保存到关注项目
