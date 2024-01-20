@@ -65,7 +65,8 @@ class _RepositoryWidgetState extends State<RepositoryWidget> {
               children: [
                 IconButton(
                     onPressed: () {
-                      Get.back();
+                      Get.back(result: true);
+
                     },
                     icon: const Icon(Icons.arrow_back)),
                 const Text(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:gitlabtal/data/LocalProject.dart';
 import 'package:gitlabtal/module/home/state/state_widget.dart';
 import 'package:gitlabtal/module/login/login.dart';
 import 'package:gitlabtal/module/repository/repository.dart';
@@ -18,11 +19,63 @@ class HomeWrapperWidget extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: controller.obx(
-        (state) => const HomeWidget(),
-        onLoading: const LoadingInnerWidget(),
-        onEmpty: const EmptyInnerWidget(),
-        onError: (error) => const ErrorInnerWidget(),
+      body: Column(
+        children: [
+          Padding(
+              padding: const EdgeInsets.fromLTRB(10, 15, 10, 15),
+              child: Row(
+                children: [
+                  IconButton(
+                      onPressed: () {
+                        // 退出账号
+                        controller.clearUser();
+                        Get.off(const LoginWidget());
+                      },
+                      icon: const Icon(Icons.exit_to_app)),
+                  const Text(
+                    "关注的仓库",
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                  ),
+                  const Spacer(),
+                  FilledButton(
+                    onPressed: () {
+                      controller.deleteAll();
+                      controller.fetchData();
+                    },
+                    child: const Text("移除所有仓库"),
+                  ),
+                  FilledButton(
+                    onPressed: () {},
+                    child: const Text("克隆所有仓库"),
+                  ),
+                  FilledButton(
+                    onPressed: () {},
+                    child: const Text("拉取所有仓库"),
+                  ),
+                  FilledButton(
+                    onPressed: () {},
+                    child: const Text("同步所有仓库"),
+                  ),
+                  FilledButton.icon(
+                      onPressed: () async{
+                        var needRefresh = await Get.toNamed(routeRepository);
+                        if(needRefresh){
+                          controller.fetchData();
+                        }
+                      },
+                      icon: const Icon(Icons.control_point_sharp),
+                      label: const Text("代码仓库"))
+                ],
+              )),
+          Expanded(
+            child: controller.obx(
+              (state) => const HomeWidget(),
+              onLoading: const LoadingInnerWidget(),
+              onEmpty: const EmptyInnerWidget(),
+              onError: (error) => const ErrorInnerWidget(),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -35,60 +88,19 @@ class HomeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     HomeController controller = Get.find();
-    return Column(
-      children: [
-        Padding(
-            padding: const EdgeInsets.fromLTRB(10, 15, 10, 15),
-            child: Row(
-              children: [
-                IconButton(
-                    onPressed: () {
-                      // 退出账号
-                      controller.clearUser();
-                      Get.off(const LoginWidget());
-                    },
-                    icon: const Icon(Icons.exit_to_app)),
-                const Text(
-                  "关注的仓库",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-                ),
-                const Spacer(),
-                FilledButton(
-                  onPressed: () {},
-                  child: const Text("克隆所有仓库"),
-                ),
-                FilledButton(
-                  onPressed: () {},
-                  child: const Text("拉取所有仓库"),
-                ),
-                FilledButton(
-                  onPressed: () {},
-                  child: const Text("同步所有仓库"),
-                ),
-                FilledButton.icon(
-                    onPressed: () {
-                      Get.toNamed(routeRepository);
-                    },
-                    icon: const Icon(Icons.control_point_sharp),
-                    label: Text("代码仓库"))
-              ],
-            )),
-         Expanded(
-          child: Obx(
-                () => Padding(padding: const EdgeInsets.symmetric(horizontal: 10),child:
-                ListView.builder(
-                itemCount: controller.entities.length,
-                itemBuilder: (context, index) {
-                  return _buildItem(controller.entities[index], controller);
-                }),
-          ),
-        ),)
-        ,
-      ],
+    return Obx(
+      () => Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: ListView.builder(
+            itemCount: controller.localProjects.length,
+            itemBuilder: (context, index) {
+              return _buildItem(controller.localProjects[index], controller);
+            }),
+      ),
     );
   }
 
-  Widget _buildItem(ProjectEntity item, HomeController controller) {
+  Widget _buildItem(LocalProject item, HomeController controller) {
     return CardItem(item: item, controller: controller);
   }
 }

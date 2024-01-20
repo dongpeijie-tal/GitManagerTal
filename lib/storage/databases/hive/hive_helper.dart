@@ -38,7 +38,9 @@ class HiveHelper {
     await executeLocalProjectDb((db) async {
       final allValue = await db.getAll(await db.getAllKeys());
       for (var value in allValue) {
-        result.add(LocalProject.fromJson(value));
+        if(value != null && value['_id'] != 0){
+          result.add(LocalProject.fromJson(value));
+        }
       }
     });
     print("存储内容：${jsonEncode(result)}");
@@ -53,5 +55,11 @@ class HiveHelper {
       result = await db.get(project.id.toString()) == null;
     });
     return result;
+  }
+
+  Future<void> deleteAllLocalProject() async{
+    await executeLocalProjectDb((db)async{
+      await db.deleteAll(await db.getAllKeys());
+    });
   }
 }

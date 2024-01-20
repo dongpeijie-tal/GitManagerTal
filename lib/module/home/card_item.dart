@@ -1,6 +1,7 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:gitlabtal/data/LocalProject.dart';
 import 'package:gitlabtal/data/ProjectEntity.dart';
 import '../../top/method/git_method.dart';
 import 'controller/home_controller.dart';
@@ -12,7 +13,7 @@ class CardItem extends StatelessWidget {
     required this.controller,
   }) : super(key: key);
 
-  final ProjectEntity item;
+  final LocalProject item;
   final HomeController controller;
 
   @override
@@ -30,11 +31,11 @@ class CardItem extends StatelessWidget {
                   children: [
                     Text(item.name ?? "未命名",
                         style: Theme.of(context).textTheme.titleLarge),
-                    Text("地址：${item.httpUrlToRepo ?? "无"}",
+                    Text("地址：${item.webUrl ?? "无"}",
                         style: Theme.of(context).textTheme.bodySmall),
-                    Text("简介：${item.description ?? "无"}",
+                    Text("简介：${item.createdAt ?? "无"}",
                         style: Theme.of(context).textTheme.bodySmall),
-                    Text("文件夹：${item.createdAt ?? "无"}",
+                    Text("文件夹：${item.dir ?? "无"}",
                         style: Theme.of(context).textTheme.bodySmall),
                   ],
                 ),
@@ -45,7 +46,7 @@ class CardItem extends StatelessWidget {
                     const EdgeInsets.symmetric(vertical: 0.0, horizontal: 1.0),
                 child: OutlinedButton(
                     onPressed: () {
-                      _gitClone(item.sshUrlToRepo);
+                      _gitClone(item.webUrl);
                     },
                     child: const Text("克隆clone")),
               ),
@@ -54,7 +55,7 @@ class CardItem extends StatelessWidget {
                     const EdgeInsets.symmetric(vertical: 0.0, horizontal: 1.0),
                 child: OutlinedButton(
                     onPressed: () {
-                      _gitFetch(item.sshUrlToRepo);
+                      _gitFetch(item.webUrl);
                     }, child: const Text("拉取fetch")),
               ),
               Padding(
@@ -62,7 +63,7 @@ class CardItem extends StatelessWidget {
                     const EdgeInsets.symmetric(vertical: 0.0, horizontal: 1.0),
                 child: OutlinedButton(
                     onPressed: () {
-                      _gitPull(item.sshUrlToRepo);
+                      _gitPull(item.webUrl);
                     }, child: const Text("同步pull")),
               ),
             ],
