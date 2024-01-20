@@ -30,8 +30,7 @@ class SearchProject {
       String? pathWithNamespace, 
       String? createdAt, 
       String? defaultBranch, 
-      List<dynamic>? tagList, 
-      String? sshUrlToRepo, 
+      String? sshUrlToRepo,
       String? httpUrlToRepo, 
       String? webUrl, 
       String? readmeUrl, 
@@ -48,7 +47,6 @@ class SearchProject {
     _pathWithNamespace = pathWithNamespace;
     _createdAt = createdAt;
     _defaultBranch = defaultBranch;
-    _tagList = tagList;
     _sshUrlToRepo = sshUrlToRepo;
     _httpUrlToRepo = httpUrlToRepo;
     _webUrl = webUrl;
@@ -69,12 +67,6 @@ class SearchProject {
     _pathWithNamespace = json['path_with_namespace'];
     _createdAt = json['created_at'];
     _defaultBranch = json['default_branch'];
-    if (json['tag_list'] != null) {
-      _tagList = [];
-      json['tag_list'].forEach((v) {
-        _tagList?.add(Dynamic.fromJson(v));
-      });
-    }
     _sshUrlToRepo = json['ssh_url_to_repo'];
     _httpUrlToRepo = json['http_url_to_repo'];
     _webUrl = json['web_url'];
@@ -93,7 +85,6 @@ class SearchProject {
   String? _pathWithNamespace;
   String? _createdAt;
   String? _defaultBranch;
-  List<dynamic>? _tagList;
   String? _sshUrlToRepo;
   String? _httpUrlToRepo;
   String? _webUrl;
@@ -129,7 +120,6 @@ SearchProject copyWith({  num? id,
   pathWithNamespace: pathWithNamespace ?? _pathWithNamespace,
   createdAt: createdAt ?? _createdAt,
   defaultBranch: defaultBranch ?? _defaultBranch,
-  tagList: tagList ?? _tagList,
   sshUrlToRepo: sshUrlToRepo ?? _sshUrlToRepo,
   httpUrlToRepo: httpUrlToRepo ?? _httpUrlToRepo,
   webUrl: webUrl ?? _webUrl,
@@ -148,7 +138,6 @@ SearchProject copyWith({  num? id,
   String? get pathWithNamespace => _pathWithNamespace;
   String? get createdAt => _createdAt;
   String? get defaultBranch => _defaultBranch;
-  List<dynamic>? get tagList => _tagList;
   String? get sshUrlToRepo => _sshUrlToRepo;
   String? get httpUrlToRepo => _httpUrlToRepo;
   String? get webUrl => _webUrl;
@@ -169,9 +158,6 @@ SearchProject copyWith({  num? id,
     map['path_with_namespace'] = _pathWithNamespace;
     map['created_at'] = _createdAt;
     map['default_branch'] = _defaultBranch;
-    if (_tagList != null) {
-      map['tag_list'] = _tagList?.map((v) => v.toJson()).toList();
-    }
     map['ssh_url_to_repo'] = _sshUrlToRepo;
     map['http_url_to_repo'] = _httpUrlToRepo;
     map['web_url'] = _webUrl;
