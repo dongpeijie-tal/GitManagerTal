@@ -2,8 +2,9 @@ import 'dart:convert';
 
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:gitlabtal/custom/dialog/prgress.dart';
 import 'package:gitlabtal/data/LocalProject.dart';
-import 'package:gitlabtal/storage/databases/sqlite3/sq.dart';
+import 'package:gitlabtal/storage/databases/hive/hive_helper.dart';
 import '../../../data/ProjectEntity.dart';
 import '../../../provider/repository_provider.dart';
 
@@ -18,6 +19,12 @@ class RepositoryController extends GetxController
   void onInit() {
     fetchData();
     super.onInit();
+  }
+  /// 刷新数据
+  Future<void> refreshData() async {
+    projects.clear();
+    fetchData();
+    HiveHelper().queryAllLocalProject();
   }
 
   Future<void> fetchData() async {
@@ -41,7 +48,7 @@ class RepositoryController extends GetxController
   }
 
   /// 保存到关注项目
-  void saveProject(ProjectEntity item) {
+  Future<void> saveProject(ProjectEntity item) async {
     if (item.id == null) {
       Get.defaultDialog(title: "内部错误,此项目没有ID,无法关注。");
       return;
@@ -52,8 +59,7 @@ class RepositoryController extends GetxController
         name: item.name,
         webUrl: item.webUrl,
         rawJson: jsonEncode(item.toJson()));
-    SqliteHelper().insert(localProject);
-    Get.snackbar("添加完毕", "已添加关注仓库");
+    await showProgressDialog("添加成功","添加失败","此仓库已添加您的关注列表！","抱歉，因为一些意外，重新试试？",()=>HiveHelper().insertLocalProject(localProject));
     return;
   }
 }

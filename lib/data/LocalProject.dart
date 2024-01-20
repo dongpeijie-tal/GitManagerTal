@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:hive/hive.dart';
+
 /// id : ""
 /// dir : ""
 /// createdAt : ""
@@ -12,7 +14,7 @@ LocalProject localProjectFromJson(String str) =>
 
 String localProjectToJson(LocalProject data) => json.encode(data.toJson());
 
-class LocalProject {
+class LocalProject extends HiveObject{
   LocalProject(int? id,{
     String? dir,
     String? createdAt,
@@ -36,7 +38,6 @@ class LocalProject {
     _webUrl = json['webUrl'];
     _rawJson = json['rawJson'];
   }
-
   int? _id;
   String? _dir;
   String? _createdAt;
