@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:gitlabtal/data/local_project.dart';
+import 'package:gitlabtal/data/LocalProject.dart';
 import 'package:gitlabtal/storage/databases/sqlite3/sq.dart';
 import '../../../data/ProjectEntity.dart';
 import '../../../provider/repository_provider.dart';
@@ -51,7 +51,6 @@ class RepositoryController extends GetxController
         createdAt: item.createdAt,
         name: item.name,
         webUrl: item.webUrl,
-        readmeUrl: item.readmeUrl,
         rawJson: jsonEncode(item.toJson()));
     SqliteHelper().insert(localProject);
     Get.snackbar("添加完毕", "已添加关注仓库");

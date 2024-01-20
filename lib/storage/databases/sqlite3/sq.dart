@@ -1,4 +1,4 @@
-import 'package:gitlabtal/data/local_project.dart';
+import 'package:gitlabtal/data/LocalProject.dart';
 import 'package:sqlite3/sqlite3.dart';
 
 class SqliteHelper {
@@ -21,7 +21,6 @@ class SqliteHelper {
       created_at TEXT,
       name TEXT,
       web_url TEXT,
-      readme_url TEXT,
       rawJson TEXT
     );
     ''');
@@ -32,14 +31,13 @@ class SqliteHelper {
   void insert(LocalProject project) {
     final db = sqlite3.openInMemory();
     final stmt = db.prepare(
-        'INSERT INTO project (id, dir, createdAt, name, webUrl, readmeUrl, rawJson) VALUES (?, ?, ?, ?, ?, ?, ?)');
+        'INSERT INTO project (id, dir, createdAt, name, webUrl, rawJson) VALUES (?, ?, ?, ?, ?, ?, ?)');
     stmt.execute([
       project.id,
       project.dir,
       project.createdAt,
       project.name,
       project.webUrl,
-      project.readmeUrl,
       project.rawJson
     ]);
     stmt.dispose();
