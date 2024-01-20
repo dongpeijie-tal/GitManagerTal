@@ -43,46 +43,47 @@
 
 class ProjectEntity {
   ProjectEntity({
-      num? id, 
-      String? description, 
-      String? name, 
-      String? nameWithNamespace, 
-      String? path, 
-      String? pathWithNamespace, 
-      String? createdAt, 
-      String? defaultBranch, 
-      String? sshUrlToRepo,
-      String? httpUrlToRepo, 
-      String? webUrl, 
-      String? readmeUrl, 
-      dynamic avatarUrl, 
-      num? starCount, 
-      num? forksCount, 
-      String? lastActivityAt, 
-      Namespace? namespace, 
-      Links? links, 
-      bool? archived, 
-      String? visibility, 
-      bool? resolveOutdatedDiffDiscussions, 
-      bool? containerRegistryEnabled, 
-      bool? issuesEnabled, 
-      bool? mergeRequestsEnabled, 
-      bool? wikiEnabled, 
-      bool? jobsEnabled, 
-      bool? snippetsEnabled, 
-      bool? sharedRunnersEnabled, 
-      bool? lfsEnabled, 
-      num? creatorId, 
-      String? importStatus, 
-      num? openIssuesCount, 
-      bool? publicJobs, 
-      dynamic ciConfigPath, 
-      bool? onlyAllowMergeIfPipelineSucceeds,
-      bool? requestAccessEnabled, 
-      bool? onlyAllowMergeIfAllDiscussionsAreResolved, 
-      bool? printingMergeRequestLinkEnabled, 
-      String? mergeMethod, 
-      Permissions? permissions,}){
+    int? id,
+    String? description,
+    String? name,
+    String? nameWithNamespace,
+    String? path,
+    String? pathWithNamespace,
+    String? createdAt,
+    String? defaultBranch,
+    String? sshUrlToRepo,
+    String? httpUrlToRepo,
+    String? webUrl,
+    String? readmeUrl,
+    dynamic avatarUrl,
+    num? starCount,
+    num? forksCount,
+    String? lastActivityAt,
+    Namespace? namespace,
+    Links? links,
+    bool? archived,
+    String? visibility,
+    bool? resolveOutdatedDiffDiscussions,
+    bool? containerRegistryEnabled,
+    bool? issuesEnabled,
+    bool? mergeRequestsEnabled,
+    bool? wikiEnabled,
+    bool? jobsEnabled,
+    bool? snippetsEnabled,
+    bool? sharedRunnersEnabled,
+    bool? lfsEnabled,
+    num? creatorId,
+    String? importStatus,
+    num? openIssuesCount,
+    bool? publicJobs,
+    dynamic ciConfigPath,
+    bool? onlyAllowMergeIfPipelineSucceeds,
+    bool? requestAccessEnabled,
+    bool? onlyAllowMergeIfAllDiscussionsAreResolved,
+    bool? printingMergeRequestLinkEnabled,
+    String? mergeMethod,
+    Permissions? permissions,
+  }) {
     _id = id;
     _description = description;
     _name = name;
@@ -119,11 +120,12 @@ class ProjectEntity {
     _ciConfigPath = ciConfigPath;
     _onlyAllowMergeIfPipelineSucceeds = onlyAllowMergeIfPipelineSucceeds;
     _requestAccessEnabled = requestAccessEnabled;
-    _onlyAllowMergeIfAllDiscussionsAreResolved = onlyAllowMergeIfAllDiscussionsAreResolved;
+    _onlyAllowMergeIfAllDiscussionsAreResolved =
+        onlyAllowMergeIfAllDiscussionsAreResolved;
     _printingMergeRequestLinkEnabled = printingMergeRequestLinkEnabled;
     _mergeMethod = mergeMethod;
     _permissions = permissions;
-}
+  }
 
   ProjectEntity.fromJson(dynamic json) {
     _id = json['id'];
@@ -142,7 +144,9 @@ class ProjectEntity {
     _starCount = json['star_count'];
     _forksCount = json['forks_count'];
     _lastActivityAt = json['last_activity_at'];
-    _namespace = json['namespace'] != null ? Namespace.fromJson(json['namespace']) : null;
+    _namespace = json['namespace'] != null
+        ? Namespace.fromJson(json['namespace'])
+        : null;
     _links = json['_links'] != null ? Links.fromJson(json['_links']) : null;
     _archived = json['archived'];
     _visibility = json['visibility'];
@@ -160,14 +164,19 @@ class ProjectEntity {
     _openIssuesCount = json['open_issues_count'];
     _publicJobs = json['public_jobs'];
     _ciConfigPath = json['ci_config_path'];
-    _onlyAllowMergeIfPipelineSucceeds = json['only_allow_merge_if_pipeline_succeeds'];
+    _onlyAllowMergeIfPipelineSucceeds =
+        json['only_allow_merge_if_pipeline_succeeds'];
     _requestAccessEnabled = json['request_access_enabled'];
-    _onlyAllowMergeIfAllDiscussionsAreResolved = json['only_allow_merge_if_all_discussions_are_resolved'];
-    _printingMergeRequestLinkEnabled = json['printing_merge_request_link_enabled'];
+    _onlyAllowMergeIfAllDiscussionsAreResolved =
+        json['only_allow_merge_if_all_discussions_are_resolved'];
+    _printingMergeRequestLinkEnabled =
+        json['printing_merge_request_link_enabled'];
     _mergeMethod = json['merge_method'];
-    _permissions = json['permissions'] != null ? Permissions.fromJson(json['permissions']) : null;
+    _permissions = json['permissions'] != null
+        ? Permissions.fromJson(json['permissions'])
+        : null;
   }
-  num? _id;
+  int? _id;
   String? _description;
   String? _name;
   String? _nameWithNamespace;
@@ -207,88 +216,97 @@ class ProjectEntity {
   bool? _printingMergeRequestLinkEnabled;
   String? _mergeMethod;
   Permissions? _permissions;
-ProjectEntity copyWith({  num? id,
-  String? description,
-  String? name,
-  String? nameWithNamespace,
-  String? path,
-  String? pathWithNamespace,
-  String? createdAt,
-  String? defaultBranch,
-  String? sshUrlToRepo,
-  String? httpUrlToRepo,
-  String? webUrl,
-  String? readmeUrl,
-  dynamic avatarUrl,
-  num? starCount,
-  num? forksCount,
-  String? lastActivityAt,
-  Namespace? namespace,
-  Links? links,
-  bool? archived,
-  String? visibility,
-  bool? resolveOutdatedDiffDiscussions,
-  bool? containerRegistryEnabled,
-  bool? issuesEnabled,
-  bool? mergeRequestsEnabled,
-  bool? wikiEnabled,
-  bool? jobsEnabled,
-  bool? snippetsEnabled,
-  bool? sharedRunnersEnabled,
-  bool? lfsEnabled,
-  num? creatorId,
-  String? importStatus,
-  num? openIssuesCount,
-  bool? publicJobs,
-  dynamic ciConfigPath,
-  bool? onlyAllowMergeIfPipelineSucceeds,
-  bool? requestAccessEnabled,
-  bool? onlyAllowMergeIfAllDiscussionsAreResolved,
-  bool? printingMergeRequestLinkEnabled,
-  String? mergeMethod,
-  Permissions? permissions,
-}) => ProjectEntity(  id: id ?? _id,
-  description: description ?? _description,
-  name: name ?? _name,
-  nameWithNamespace: nameWithNamespace ?? _nameWithNamespace,
-  path: path ?? _path,
-  pathWithNamespace: pathWithNamespace ?? _pathWithNamespace,
-  createdAt: createdAt ?? _createdAt,
-  defaultBranch: defaultBranch ?? _defaultBranch,
-  sshUrlToRepo: sshUrlToRepo ?? _sshUrlToRepo,
-  httpUrlToRepo: httpUrlToRepo ?? _httpUrlToRepo,
-  webUrl: webUrl ?? _webUrl,
-  readmeUrl: readmeUrl ?? _readmeUrl,
-  avatarUrl: avatarUrl ?? _avatarUrl,
-  starCount: starCount ?? _starCount,
-  forksCount: forksCount ?? _forksCount,
-  lastActivityAt: lastActivityAt ?? _lastActivityAt,
-  namespace: namespace ?? _namespace,
-  links: links ?? _links,
-  archived: archived ?? _archived,
-  visibility: visibility ?? _visibility,
-  resolveOutdatedDiffDiscussions: resolveOutdatedDiffDiscussions ?? _resolveOutdatedDiffDiscussions,
-  containerRegistryEnabled: containerRegistryEnabled ?? _containerRegistryEnabled,
-  issuesEnabled: issuesEnabled ?? _issuesEnabled,
-  mergeRequestsEnabled: mergeRequestsEnabled ?? _mergeRequestsEnabled,
-  wikiEnabled: wikiEnabled ?? _wikiEnabled,
-  jobsEnabled: jobsEnabled ?? _jobsEnabled,
-  snippetsEnabled: snippetsEnabled ?? _snippetsEnabled,
-  sharedRunnersEnabled: sharedRunnersEnabled ?? _sharedRunnersEnabled,
-  lfsEnabled: lfsEnabled ?? _lfsEnabled,
-  creatorId: creatorId ?? _creatorId,
-  importStatus: importStatus ?? _importStatus,
-  openIssuesCount: openIssuesCount ?? _openIssuesCount,
-  publicJobs: publicJobs ?? _publicJobs,
-  ciConfigPath: ciConfigPath ?? _ciConfigPath,
-  onlyAllowMergeIfPipelineSucceeds: onlyAllowMergeIfPipelineSucceeds ?? _onlyAllowMergeIfPipelineSucceeds,
-  requestAccessEnabled: requestAccessEnabled ?? _requestAccessEnabled,
-  onlyAllowMergeIfAllDiscussionsAreResolved: onlyAllowMergeIfAllDiscussionsAreResolved ?? _onlyAllowMergeIfAllDiscussionsAreResolved,
-  printingMergeRequestLinkEnabled: printingMergeRequestLinkEnabled ?? _printingMergeRequestLinkEnabled,
-  mergeMethod: mergeMethod ?? _mergeMethod,
-  permissions: permissions ?? _permissions,
-);
-  num? get id => _id;
+  ProjectEntity copyWith({
+    int? id,
+    String? description,
+    String? name,
+    String? nameWithNamespace,
+    String? path,
+    String? pathWithNamespace,
+    String? createdAt,
+    String? defaultBranch,
+    String? sshUrlToRepo,
+    String? httpUrlToRepo,
+    String? webUrl,
+    String? readmeUrl,
+    dynamic avatarUrl,
+    num? starCount,
+    num? forksCount,
+    String? lastActivityAt,
+    Namespace? namespace,
+    Links? links,
+    bool? archived,
+    String? visibility,
+    bool? resolveOutdatedDiffDiscussions,
+    bool? containerRegistryEnabled,
+    bool? issuesEnabled,
+    bool? mergeRequestsEnabled,
+    bool? wikiEnabled,
+    bool? jobsEnabled,
+    bool? snippetsEnabled,
+    bool? sharedRunnersEnabled,
+    bool? lfsEnabled,
+    num? creatorId,
+    String? importStatus,
+    num? openIssuesCount,
+    bool? publicJobs,
+    dynamic ciConfigPath,
+    bool? onlyAllowMergeIfPipelineSucceeds,
+    bool? requestAccessEnabled,
+    bool? onlyAllowMergeIfAllDiscussionsAreResolved,
+    bool? printingMergeRequestLinkEnabled,
+    String? mergeMethod,
+    Permissions? permissions,
+  }) =>
+      ProjectEntity(
+        id: id ?? _id,
+        description: description ?? _description,
+        name: name ?? _name,
+        nameWithNamespace: nameWithNamespace ?? _nameWithNamespace,
+        path: path ?? _path,
+        pathWithNamespace: pathWithNamespace ?? _pathWithNamespace,
+        createdAt: createdAt ?? _createdAt,
+        defaultBranch: defaultBranch ?? _defaultBranch,
+        sshUrlToRepo: sshUrlToRepo ?? _sshUrlToRepo,
+        httpUrlToRepo: httpUrlToRepo ?? _httpUrlToRepo,
+        webUrl: webUrl ?? _webUrl,
+        readmeUrl: readmeUrl ?? _readmeUrl,
+        avatarUrl: avatarUrl ?? _avatarUrl,
+        starCount: starCount ?? _starCount,
+        forksCount: forksCount ?? _forksCount,
+        lastActivityAt: lastActivityAt ?? _lastActivityAt,
+        namespace: namespace ?? _namespace,
+        links: links ?? _links,
+        archived: archived ?? _archived,
+        visibility: visibility ?? _visibility,
+        resolveOutdatedDiffDiscussions:
+            resolveOutdatedDiffDiscussions ?? _resolveOutdatedDiffDiscussions,
+        containerRegistryEnabled:
+            containerRegistryEnabled ?? _containerRegistryEnabled,
+        issuesEnabled: issuesEnabled ?? _issuesEnabled,
+        mergeRequestsEnabled: mergeRequestsEnabled ?? _mergeRequestsEnabled,
+        wikiEnabled: wikiEnabled ?? _wikiEnabled,
+        jobsEnabled: jobsEnabled ?? _jobsEnabled,
+        snippetsEnabled: snippetsEnabled ?? _snippetsEnabled,
+        sharedRunnersEnabled: sharedRunnersEnabled ?? _sharedRunnersEnabled,
+        lfsEnabled: lfsEnabled ?? _lfsEnabled,
+        creatorId: creatorId ?? _creatorId,
+        importStatus: importStatus ?? _importStatus,
+        openIssuesCount: openIssuesCount ?? _openIssuesCount,
+        publicJobs: publicJobs ?? _publicJobs,
+        ciConfigPath: ciConfigPath ?? _ciConfigPath,
+        onlyAllowMergeIfPipelineSucceeds: onlyAllowMergeIfPipelineSucceeds ??
+            _onlyAllowMergeIfPipelineSucceeds,
+        requestAccessEnabled: requestAccessEnabled ?? _requestAccessEnabled,
+        onlyAllowMergeIfAllDiscussionsAreResolved:
+            onlyAllowMergeIfAllDiscussionsAreResolved ??
+                _onlyAllowMergeIfAllDiscussionsAreResolved,
+        printingMergeRequestLinkEnabled:
+            printingMergeRequestLinkEnabled ?? _printingMergeRequestLinkEnabled,
+        mergeMethod: mergeMethod ?? _mergeMethod,
+        permissions: permissions ?? _permissions,
+      );
+  int? get id => _id;
   String? get description => _description;
   String? get name => _name;
   String? get nameWithNamespace => _nameWithNamespace;
@@ -322,9 +340,11 @@ ProjectEntity copyWith({  num? id,
   num? get openIssuesCount => _openIssuesCount;
   bool? get publicJobs => _publicJobs;
   dynamic get ciConfigPath => _ciConfigPath;
-  bool? get onlyAllowMergeIfPipelineSucceeds => _onlyAllowMergeIfPipelineSucceeds;
+  bool? get onlyAllowMergeIfPipelineSucceeds =>
+      _onlyAllowMergeIfPipelineSucceeds;
   bool? get requestAccessEnabled => _requestAccessEnabled;
-  bool? get onlyAllowMergeIfAllDiscussionsAreResolved => _onlyAllowMergeIfAllDiscussionsAreResolved;
+  bool? get onlyAllowMergeIfAllDiscussionsAreResolved =>
+      _onlyAllowMergeIfAllDiscussionsAreResolved;
   bool? get printingMergeRequestLinkEnabled => _printingMergeRequestLinkEnabled;
   String? get mergeMethod => _mergeMethod;
   Permissions? get permissions => _permissions;
@@ -369,17 +389,19 @@ ProjectEntity copyWith({  num? id,
     map['open_issues_count'] = _openIssuesCount;
     map['public_jobs'] = _publicJobs;
     map['ci_config_path'] = _ciConfigPath;
-    map['only_allow_merge_if_pipeline_succeeds'] = _onlyAllowMergeIfPipelineSucceeds;
+    map['only_allow_merge_if_pipeline_succeeds'] =
+        _onlyAllowMergeIfPipelineSucceeds;
     map['request_access_enabled'] = _requestAccessEnabled;
-    map['only_allow_merge_if_all_discussions_are_resolved'] = _onlyAllowMergeIfAllDiscussionsAreResolved;
-    map['printing_merge_request_link_enabled'] = _printingMergeRequestLinkEnabled;
+    map['only_allow_merge_if_all_discussions_are_resolved'] =
+        _onlyAllowMergeIfAllDiscussionsAreResolved;
+    map['printing_merge_request_link_enabled'] =
+        _printingMergeRequestLinkEnabled;
     map['merge_method'] = _mergeMethod;
     if (_permissions != null) {
       map['permissions'] = _permissions?.toJson();
     }
     return map;
   }
-
 }
 
 /// project_access : null
@@ -387,23 +409,29 @@ ProjectEntity copyWith({  num? id,
 
 class Permissions {
   Permissions({
-      dynamic projectAccess, 
-      GroupAccess? groupAccess,}){
+    dynamic projectAccess,
+    GroupAccess? groupAccess,
+  }) {
     _projectAccess = projectAccess;
     _groupAccess = groupAccess;
-}
+  }
 
   Permissions.fromJson(dynamic json) {
     _projectAccess = json['project_access'];
-    _groupAccess = json['group_access'] != null ? GroupAccess.fromJson(json['group_access']) : null;
+    _groupAccess = json['group_access'] != null
+        ? GroupAccess.fromJson(json['group_access'])
+        : null;
   }
   dynamic _projectAccess;
   GroupAccess? _groupAccess;
-Permissions copyWith({  dynamic projectAccess,
-  GroupAccess? groupAccess,
-}) => Permissions(  projectAccess: projectAccess ?? _projectAccess,
-  groupAccess: groupAccess ?? _groupAccess,
-);
+  Permissions copyWith({
+    dynamic projectAccess,
+    GroupAccess? groupAccess,
+  }) =>
+      Permissions(
+        projectAccess: projectAccess ?? _projectAccess,
+        groupAccess: groupAccess ?? _groupAccess,
+      );
   dynamic get projectAccess => _projectAccess;
   GroupAccess? get groupAccess => _groupAccess;
 
@@ -415,7 +443,6 @@ Permissions copyWith({  dynamic projectAccess,
     }
     return map;
   }
-
 }
 
 /// access_level : 30
@@ -423,11 +450,12 @@ Permissions copyWith({  dynamic projectAccess,
 
 class GroupAccess {
   GroupAccess({
-      num? accessLevel, 
-      num? notificationLevel,}){
+    num? accessLevel,
+    num? notificationLevel,
+  }) {
     _accessLevel = accessLevel;
     _notificationLevel = notificationLevel;
-}
+  }
 
   GroupAccess.fromJson(dynamic json) {
     _accessLevel = json['access_level'];
@@ -435,11 +463,14 @@ class GroupAccess {
   }
   num? _accessLevel;
   num? _notificationLevel;
-GroupAccess copyWith({  num? accessLevel,
-  num? notificationLevel,
-}) => GroupAccess(  accessLevel: accessLevel ?? _accessLevel,
-  notificationLevel: notificationLevel ?? _notificationLevel,
-);
+  GroupAccess copyWith({
+    num? accessLevel,
+    num? notificationLevel,
+  }) =>
+      GroupAccess(
+        accessLevel: accessLevel ?? _accessLevel,
+        notificationLevel: notificationLevel ?? _notificationLevel,
+      );
   num? get accessLevel => _accessLevel;
   num? get notificationLevel => _notificationLevel;
 
@@ -449,7 +480,6 @@ GroupAccess copyWith({  num? accessLevel,
     map['notification_level'] = _notificationLevel;
     return map;
   }
-
 }
 
 /// self : "https://git.100tal.com/api/v4/projects/43645"
@@ -462,13 +492,14 @@ GroupAccess copyWith({  num? accessLevel,
 
 class Links {
   Links({
-      String? self, 
-      String? issues, 
-      String? mergeRequests, 
-      String? repoBranches, 
-      String? labels, 
-      String? events, 
-      String? members,}){
+    String? self,
+    String? issues,
+    String? mergeRequests,
+    String? repoBranches,
+    String? labels,
+    String? events,
+    String? members,
+  }) {
     _self = self;
     _issues = issues;
     _mergeRequests = mergeRequests;
@@ -476,7 +507,7 @@ class Links {
     _labels = labels;
     _events = events;
     _members = members;
-}
+  }
 
   Links.fromJson(dynamic json) {
     _self = json['self'];
@@ -494,21 +525,24 @@ class Links {
   String? _labels;
   String? _events;
   String? _members;
-Links copyWith({  String? self,
-  String? issues,
-  String? mergeRequests,
-  String? repoBranches,
-  String? labels,
-  String? events,
-  String? members,
-}) => Links(  self: self ?? _self,
-  issues: issues ?? _issues,
-  mergeRequests: mergeRequests ?? _mergeRequests,
-  repoBranches: repoBranches ?? _repoBranches,
-  labels: labels ?? _labels,
-  events: events ?? _events,
-  members: members ?? _members,
-);
+  Links copyWith({
+    String? self,
+    String? issues,
+    String? mergeRequests,
+    String? repoBranches,
+    String? labels,
+    String? events,
+    String? members,
+  }) =>
+      Links(
+        self: self ?? _self,
+        issues: issues ?? _issues,
+        mergeRequests: mergeRequests ?? _mergeRequests,
+        repoBranches: repoBranches ?? _repoBranches,
+        labels: labels ?? _labels,
+        events: events ?? _events,
+        members: members ?? _members,
+      );
   String? get self => _self;
   String? get issues => _issues;
   String? get mergeRequests => _mergeRequests;
@@ -528,7 +562,6 @@ Links copyWith({  String? self,
     map['members'] = _members;
     return map;
   }
-
 }
 
 /// id : 838
@@ -540,19 +573,20 @@ Links copyWith({  String? self,
 
 class Namespace {
   Namespace({
-      num? id, 
-      String? name, 
-      String? path, 
-      String? kind, 
-      String? fullPath, 
-      dynamic parentId,}){
+    int? id,
+    String? name,
+    String? path,
+    String? kind,
+    String? fullPath,
+    dynamic parentId,
+  }) {
     _id = id;
     _name = name;
     _path = path;
     _kind = kind;
     _fullPath = fullPath;
     _parentId = parentId;
-}
+  }
 
   Namespace.fromJson(dynamic json) {
     _id = json['id'];
@@ -562,26 +596,29 @@ class Namespace {
     _fullPath = json['full_path'];
     _parentId = json['parent_id'];
   }
-  num? _id;
+  int? _id;
   String? _name;
   String? _path;
   String? _kind;
   String? _fullPath;
   dynamic _parentId;
-Namespace copyWith({  num? id,
-  String? name,
-  String? path,
-  String? kind,
-  String? fullPath,
-  dynamic parentId,
-}) => Namespace(  id: id ?? _id,
-  name: name ?? _name,
-  path: path ?? _path,
-  kind: kind ?? _kind,
-  fullPath: fullPath ?? _fullPath,
-  parentId: parentId ?? _parentId,
-);
-  num? get id => _id;
+  Namespace copyWith({
+    int? id,
+    String? name,
+    String? path,
+    String? kind,
+    String? fullPath,
+    dynamic parentId,
+  }) =>
+      Namespace(
+        id: id ?? _id,
+        name: name ?? _name,
+        path: path ?? _path,
+        kind: kind ?? _kind,
+        fullPath: fullPath ?? _fullPath,
+        parentId: parentId ?? _parentId,
+      );
+  int? get id => _id;
   String? get name => _name;
   String? get path => _path;
   String? get kind => _kind;
@@ -598,5 +635,4 @@ Namespace copyWith({  num? id,
     map['parent_id'] = _parentId;
     return map;
   }
-
 }

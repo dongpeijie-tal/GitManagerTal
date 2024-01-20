@@ -31,8 +31,7 @@ class RepositoryCardItem extends StatelessWidget {
                         style: const TextStyle(
                             color: Colors.blue,
                             fontSize: 18,
-                            fontWeight: FontWeight.bold)
-                    ),
+                            fontWeight: FontWeight.bold)),
                     Text("地址：${item.httpUrlToRepo ?? "无"}",
                         style: const TextStyle(
                             color: Colors.black87, fontSize: 12)),
@@ -44,10 +43,13 @@ class RepositoryCardItem extends StatelessWidget {
               ),
               const Spacer(),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 3.0),
-                child: OutlinedButton(onPressed: () {
-                  controller.saveProject(item);
-                }, child: const Text("添加")),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 0.0, horizontal: 3.0),
+                child: OutlinedButton(
+                    onPressed: () {
+                      controller.saveProject(item);
+                    },
+                    child: const Text("添加")),
               ),
             ],
           ),
