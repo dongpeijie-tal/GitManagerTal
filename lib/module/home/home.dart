@@ -5,6 +5,7 @@ import 'package:gitlabtal/module/home/state/state_widget.dart';
 import 'package:gitlabtal/module/login/login.dart';
 import 'package:gitlabtal/module/repository/repository.dart';
 import 'package:gitlabtal/route/route_const.dart';
+import 'package:gitlabtal/theme/color_style.dart';
 import '../../custom/widget/empty_widget.dart';
 import '../../custom/widget/error_widget.dart';
 import '../../custom/widget/loading_widget.dart';
@@ -37,25 +38,22 @@ class HomeWrapperWidget extends GetView<HomeController> {
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                   ),
                   const Spacer(),
-                  FilledButton(
-                    onPressed: () {
-                      controller.deleteAll();
-                      controller.fetchData();
-                    },
-                    child: const Text("移除所有仓库"),
-                  ),
-                  FilledButton(
+                  Tooltip(message: "清空所有项目",child: IconButton(
+                    icon: Image.asset("images/clear_icon.png",width: 24,height: 24,color: AppColors().getColor(ColorName.primary),),
                     onPressed: () {},
-                    child: const Text("克隆所有仓库"),
-                  ),
-                  FilledButton(
+                  ),),
+                  Tooltip(message: "克隆所有仓库",child: IconButton(
+                    icon: Image.asset("images/clone_icon.png",width: 24,height: 24,color: AppColors().getColor(ColorName.primary),),
                     onPressed: () {},
-                    child: const Text("拉取所有仓库"),
-                  ),
-                  FilledButton(
+                  ),),
+                  Tooltip(message: "同步所有仓库",child: IconButton(
+                    icon: Image.asset("images/pull_icon.png",width: 24,height: 24,color: AppColors().getColor(ColorName.primary),),
                     onPressed: () {},
-                    child: const Text("同步所有仓库"),
-                  ),
+                  ),),
+                  Tooltip(message: "拉取所有仓库",child: IconButton(
+                    icon: Image.asset("images/fetch_icon.png",width: 24,height: 24,color: AppColors().getColor(ColorName.primary),),
+                    onPressed: () {},
+                  ),),
                   FilledButton.icon(
                       onPressed: () async{
                         var needRefresh = await Get.toNamed(routeRepository);
@@ -63,7 +61,7 @@ class HomeWrapperWidget extends GetView<HomeController> {
                           controller.fetchData();
                         }
                       },
-                      icon: const Icon(Icons.control_point_sharp),
+                      icon: Image.asset("images/store_icon.png",width: 20,height: 20,color: AppColors().getColor(ColorName.buttonText),),
                       label: const Text("代码仓库"))
                 ],
               )),

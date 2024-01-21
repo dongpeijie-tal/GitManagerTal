@@ -16,6 +16,7 @@ import 'module/splash/splash.dart';
 
 void main() async {
   await GetStorage.init();
+  Get.changeThemeMode(ThemeMode.dark);
   runApp(GetMaterialApp(
     theme: AppTheme.lightThemeData,
     themeMode: ThemeMode.dark,

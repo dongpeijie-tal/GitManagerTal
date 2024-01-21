@@ -19,6 +19,9 @@ class SearchWrapperWidget extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: TextField(
+          onSubmitted: (value){
+            controller.searchProject(value);
+          },
           controller: textFieldController,
           decoration: const InputDecoration(
             hintText: '搜索<项目关键字>',
