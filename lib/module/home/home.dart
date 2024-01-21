@@ -56,16 +56,19 @@ class HomeWrapperWidget extends GetView<HomeController> {
                   ),
                   const Spacer(),
                   Tooltip(
-                      message: "设置",
-                      child: IconButton(
-                        icon: Image.asset(
-                          "images/setting_icon.png",
-                          width: 24,
-                          height: 24,
-                          color: AppColors().getColor(ColorName.primary),
-                        ),
-                        onPressed: () {},
-                      )),
+                    message: "设置",
+                    child: IconButton(
+                      icon: Image.asset(
+                        "images/setting_icon.png",
+                        width: 24,
+                        height: 24,
+                        color: AppColors().getColor(ColorName.primary),
+                      ),
+                      onPressed: () {
+                        Get.toNamed(routeSetting);
+                      },
+                    ),
+                  ),
                   Tooltip(
                     message: "清空所有项目",
                     child: IconButton(

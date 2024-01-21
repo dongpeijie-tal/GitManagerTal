@@ -5,8 +5,9 @@ import 'package:gitlabtal/module/home/binding/home_binding.dart';
 import 'package:gitlabtal/module/home/home.dart';
 import 'package:gitlabtal/module/search/binding/search_binding.dart';
 import 'package:gitlabtal/module/search/search.dart';
+import 'package:gitlabtal/module/setting/binding/SettingBinding.dart';
+import 'package:gitlabtal/module/setting/setting.dart';
 import 'package:gitlabtal/route/route_const.dart';
-import 'package:gitlabtal/theme/color_style.dart';
 import 'package:gitlabtal/theme/theme.dart';
 import 'module/login/login.dart';
 import 'module/repository/binding/repository_binding.dart';
@@ -41,6 +42,10 @@ void main() async {
           name: routeSearch,
           page: () => SearchWrapperWidget(),
           binding: SearchBinding()),
+      GetPage(
+          name: routeSetting,
+          page: () => SettingWrapperWidget(),
+          binding: SettingBinding()),
     ],
   ));
 }

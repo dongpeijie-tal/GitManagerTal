@@ -33,7 +33,7 @@ class AppTheme {
         background: lightCardPrimaryColor,
         // 按钮背景色
         onBackground: lightButtonPrimaryColor,
-        surface: Colors.pink,
+        surface: lightButtonPrimaryColor,
         onSurface: lightIconPrimaryColor),
     cardTheme: const CardTheme(
       clipBehavior: Clip.none,
@@ -96,7 +96,7 @@ class AppTheme {
         background: darkCardPrimaryColor,
         // 按钮背景色
         onBackground: darkButtonPrimaryColor,
-        surface: Colors.pink,
+        surface: darkButtonPrimaryColor,
         onSurface: darkIconPrimaryColor),
     cardTheme: const CardTheme(
       clipBehavior: Clip.none,
