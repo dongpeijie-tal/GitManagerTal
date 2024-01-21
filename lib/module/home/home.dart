@@ -20,6 +20,30 @@ class HomeWrapperWidget extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Container(
+          width: 50,
+          height: 50,
+          decoration: BoxDecoration(
+              shape: BoxShape.circle, color: Theme.of(context).primaryColor),
+          child: Tooltip(
+            message: "远程仓库",
+            child: IconButton(
+              onPressed: () async {
+                var needRefresh = await Get.toNamed(routeRepository);
+                if (needRefresh) {
+                  controller.fetchData();
+                }
+              },
+              icon: Icon(
+                Icons.local_grocery_store,
+                color: Theme.of(context).colorScheme.onPrimary,
+              ),
+            ),
+          ),
+        ),
+      ),
       body: Column(
         children: [
           Padding(
@@ -90,20 +114,6 @@ class HomeWrapperWidget extends GetView<HomeController> {
                       onPressed: () {},
                     ),
                   ),
-                  FilledButton.icon(
-                      onPressed: () async {
-                        var needRefresh = await Get.toNamed(routeRepository);
-                        if (needRefresh) {
-                          controller.fetchData();
-                        }
-                      },
-                      icon: Image.asset(
-                        "images/store_icon.png",
-                        width: 20,
-                        height: 20,
-                        color: AppColors().getColor(ColorName.buttonText),
-                      ),
-                      label: const Text("代码仓库"))
                 ],
               )),
           Expanded(
