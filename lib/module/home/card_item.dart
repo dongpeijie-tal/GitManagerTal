@@ -43,28 +43,28 @@ class CardItem extends StatelessWidget {
               const Spacer(),
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(vertical: 0.0, horizontal: 1.0),
+                    const EdgeInsets.symmetric(vertical: 0.0, horizontal: 4.0),
                 child: OutlinedButton(
                     onPressed: () {
                       _gitClone(item.webUrl);
                     },
-                    child: const Text("克隆clone")),
+                    child: const Text("clone")),
               ),
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(vertical: 0.0, horizontal: 1.0),
+                    const EdgeInsets.symmetric(vertical: 0.0, horizontal: 4.0),
                 child: OutlinedButton(
                     onPressed: () {
                       _gitFetch(item.webUrl);
-                    }, child: const Text("拉取fetch")),
+                    }, child: const Text("fetch")),
               ),
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(vertical: 0.0, horizontal: 1.0),
+                    const EdgeInsets.symmetric(vertical: 0.0, horizontal: 4.0),
                 child: OutlinedButton(
                     onPressed: () {
                       _gitPull(item.webUrl);
-                    }, child: const Text("同步pull")),
+                    }, child: const Text("pull")),
               ),
             ],
           ),

@@ -45,7 +45,7 @@ class LoginWidget extends StatelessWidget {
                       onPressed: (() {
                         // 在这里添加按钮点击时需要执行的代码
                         controller.putUserToken(editController.text);
-                        Get.off(const HomeWrapperWidget(),
+                        Get.off(HomeWrapperWidget(),
                             binding: HomeBinding());
                       }),
                       style: ElevatedButton.styleFrom(

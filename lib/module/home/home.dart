@@ -15,7 +15,7 @@ import 'controller/home_controller.dart';
 
 /// 主页的包装页
 class HomeWrapperWidget extends GetView<HomeController> {
-  const HomeWrapperWidget({super.key});
+  HomeWrapperWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,42 +26,83 @@ class HomeWrapperWidget extends GetView<HomeController> {
               padding: const EdgeInsets.fromLTRB(10, 15, 10, 15),
               child: Row(
                 children: [
-                  IconButton(
-                      onPressed: () {
-                        // 退出账号
-                        controller.clearUser();
-                        Get.off(const LoginWidget());
-                      },
-                      icon: const Icon(Icons.exit_to_app)),
                   const Text(
                     "关注的仓库",
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                   ),
                   const Spacer(),
-                  Tooltip(message: "清空所有项目",child: IconButton(
-                    icon: Image.asset("images/clear_icon.png",width: 24,height: 24,color: AppColors().getColor(ColorName.primary),),
-                    onPressed: () {},
-                  ),),
-                  Tooltip(message: "克隆所有仓库",child: IconButton(
-                    icon: Image.asset("images/clone_icon.png",width: 24,height: 24,color: AppColors().getColor(ColorName.primary),),
-                    onPressed: () {},
-                  ),),
-                  Tooltip(message: "同步所有仓库",child: IconButton(
-                    icon: Image.asset("images/pull_icon.png",width: 24,height: 24,color: AppColors().getColor(ColorName.primary),),
-                    onPressed: () {},
-                  ),),
-                  Tooltip(message: "拉取所有仓库",child: IconButton(
-                    icon: Image.asset("images/fetch_icon.png",width: 24,height: 24,color: AppColors().getColor(ColorName.primary),),
-                    onPressed: () {},
-                  ),),
+                  Tooltip(
+                      message: "设置",
+                      child: IconButton(
+                        icon: Image.asset(
+                          "images/setting_icon.png",
+                          width: 24,
+                          height: 24,
+                          color: AppColors().getColor(ColorName.primary),
+                        ),
+                        onPressed: () {},
+                      )),
+                  Tooltip(
+                    message: "清空所有项目",
+                    child: IconButton(
+                      icon: Image.asset(
+                        "images/clear_icon.png",
+                        width: 24,
+                        height: 24,
+                        color: AppColors().getColor(ColorName.primary),
+                      ),
+                      onPressed: () {},
+                    ),
+                  ),
+                  Tooltip(
+                    message: "克隆所有仓库",
+                    child: IconButton(
+                      icon: Image.asset(
+                        "images/clone_icon.png",
+                        width: 24,
+                        height: 24,
+                        color: AppColors().getColor(ColorName.primary),
+                      ),
+                      onPressed: () {},
+                    ),
+                  ),
+                  Tooltip(
+                    message: "同步所有仓库",
+                    child: IconButton(
+                      icon: Image.asset(
+                        "images/pull_icon.png",
+                        width: 24,
+                        height: 24,
+                        color: AppColors().getColor(ColorName.primary),
+                      ),
+                      onPressed: () {},
+                    ),
+                  ),
+                  Tooltip(
+                    message: "拉取所有仓库",
+                    child: IconButton(
+                      icon: Image.asset(
+                        "images/fetch_icon.png",
+                        width: 24,
+                        height: 24,
+                        color: AppColors().getColor(ColorName.primary),
+                      ),
+                      onPressed: () {},
+                    ),
+                  ),
                   FilledButton.icon(
-                      onPressed: () async{
+                      onPressed: () async {
                         var needRefresh = await Get.toNamed(routeRepository);
-                        if(needRefresh){
+                        if (needRefresh) {
                           controller.fetchData();
                         }
                       },
-                      icon: Image.asset("images/store_icon.png",width: 20,height: 20,color: AppColors().getColor(ColorName.buttonText),),
+                      icon: Image.asset(
+                        "images/store_icon.png",
+                        width: 20,
+                        height: 20,
+                        color: AppColors().getColor(ColorName.buttonText),
+                      ),
                       label: const Text("代码仓库"))
                 ],
               )),

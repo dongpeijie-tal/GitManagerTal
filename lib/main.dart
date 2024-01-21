@@ -16,10 +16,8 @@ import 'module/splash/splash.dart';
 
 void main() async {
   await GetStorage.init();
-  Get.changeThemeMode(ThemeMode.dark);
   runApp(GetMaterialApp(
     theme: AppTheme.lightThemeData,
-    themeMode: ThemeMode.dark,
     darkTheme: AppTheme.darkThemeData,
     initialRoute: routeHome,
     getPages: [
@@ -33,7 +31,7 @@ void main() async {
           binding: SplashBinding()),
       GetPage(
           name: routeHome,
-          page: () => const HomeWrapperWidget(),
+          page: () => HomeWrapperWidget(),
           binding: HomeBinding()),
       GetPage(
           name: routeRepository,

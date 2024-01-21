@@ -101,7 +101,6 @@ class AppColors {
     },
   );
 
-  static const String blue = 'blue';
   static const Map<bool,Map<ColorName,MaterialColor>> style = {
     false:{ColorName.blue:lightBlueColor,ColorName.primary:lightPrimaryColor,ColorName.buttonText:lightButtonTextColor},
     true:{ColorName.blue:darkBlueColor,ColorName.primary:darkPrimaryColor,ColorName.buttonText:darkButtonTextColor}
