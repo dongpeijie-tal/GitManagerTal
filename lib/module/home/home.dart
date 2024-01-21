@@ -71,7 +71,7 @@ class HomeWrapperWidget extends GetView<HomeController> {
             child: controller.obx(
               (state) => const HomeWidget(),
               onLoading: const LoadingInnerWidget(),
-              onEmpty: const EmptyInnerWidget(),
+              onEmpty: EmptyInnerWidget(),
               onError: (error) => const ErrorInnerWidget(),
             ),
           ),
