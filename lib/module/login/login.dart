@@ -12,26 +12,22 @@ class LoginWidget extends StatelessWidget {
     final TextEditingController editController = TextEditingController();
     final controller = Get.find<SplashController>();
     return Scaffold(
-      backgroundColor: Colors.indigo, // 设置页面背景色为深蓝色
       body: Center(
         child: SizedBox(
           width: MediaQuery.of(context).size.width / 3, // 设置卡片最大宽度为窗口大小的三分之一
           child: Card(
-            color: Colors.white,
             child: Padding(
               padding: const EdgeInsets.all(40.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  const Text("GitLab",
-                      style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold)), // 添加logo文字 "GitLab"
+                  Text("GitLab",
+                      style: Theme.of(context).textTheme.titleLarge), // 添加logo文字 "GitLab"
                   const SizedBox(height: 10),
                   TextField(
                     controller: editController,
                     decoration: InputDecoration(
-                      labelText: 'Enter Token',
+                      labelText: 'git private-token',
                       suffixIcon: editController.text.isEmpty
                           ? null
                           : IconButton(
@@ -39,8 +35,9 @@ class LoginWidget extends StatelessWidget {
                               icon: const Icon(Icons.clear),
                               onPressed: (() => editController.clear())),
                     ),
+                    style: Theme.of(context).textTheme.bodyMedium,
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 20),
                   ElevatedButton(
                       onPressed: (() {
                         // 在这里添加按钮点击时需要执行的代码
@@ -51,9 +48,8 @@ class LoginWidget extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30.0)),
-                        foregroundColor: Colors.blue,
                       ),
-                      child: const Text('Confirm'))
+                      child: Text('进入',style : Theme.of(context).textTheme.labelLarge))
                 ],
               ),
             ),

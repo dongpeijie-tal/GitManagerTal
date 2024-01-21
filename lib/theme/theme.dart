@@ -54,8 +54,8 @@ class AppTheme {
       headlineLarge: TextStyle(color: Colors.black, fontFamily: fontFamily,fontWeight: FontWeight.w600,fontSize: 16),
       headlineMedium: TextStyle(color: Colors.black, fontFamily: fontFamily,fontWeight: FontWeight.w500,fontSize: 14),
       headlineSmall: TextStyle(color: Colors.black, fontFamily: fontFamily,fontWeight: FontWeight.w300,fontSize: 12),
-      titleLarge: TextStyle(color: Colors.black, fontFamily: fontFamily,fontWeight: FontWeight.w600,fontSize: 18,),
-      titleMedium: TextStyle(color: Colors.black, fontFamily: fontFamily,fontWeight: FontWeight.w500,fontSize: 14),
+      titleLarge: TextStyle(color: Colors.black, fontFamily: fontFamily,fontWeight: FontWeight.w600,fontSize: 20,),
+      titleMedium: TextStyle(color: Colors.black, fontFamily: fontFamily,fontWeight: FontWeight.w500,fontSize: 16),
       titleSmall: TextStyle(color: Colors.black, fontFamily: fontFamily,fontWeight: FontWeight.w300,fontSize: 12),
       bodyLarge: TextStyle(color: Colors.black, fontFamily: fontFamily,fontWeight: FontWeight.w600,fontSize: 16),
       bodyMedium: TextStyle(color: Colors.black, fontFamily: fontFamily,fontWeight: FontWeight.w500,fontSize: 14),
@@ -63,7 +63,6 @@ class AppTheme {
       labelLarge: TextStyle(color: Colors.white, fontFamily: fontFamily,fontWeight: FontWeight.w600,fontSize: 16),
       labelMedium: TextStyle(color: Colors.white, fontFamily: fontFamily,fontWeight: FontWeight.w500,fontSize: 14),
       labelSmall: TextStyle(color: Colors.white, fontFamily: fontFamily,fontWeight: FontWeight.w300,fontSize: 12),
-      // 其他文本样式...
     ),
   );
 
@@ -126,7 +125,6 @@ class AppTheme {
       labelLarge: TextStyle(color: darkTextPrimaryColor, fontFamily: fontFamily,fontWeight: FontWeight.w600,fontSize: 16),
       labelMedium: TextStyle(color: darkTextPrimaryColor, fontFamily: fontFamily,fontWeight: FontWeight.w500,fontSize: 14),
       labelSmall: TextStyle(color: darkTextPrimaryColor, fontFamily: fontFamily,fontWeight: FontWeight.w300,fontSize: 12),
-      // 其他文本样式...
     ),
   );
 }

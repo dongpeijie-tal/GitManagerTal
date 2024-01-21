@@ -31,7 +31,7 @@ class SettingWrapperWidget extends StatelessWidget {
             trailing: ElevatedButton(
               child: const Text('登出',style: TextStyle(color: Colors.white),),
               onPressed: () {
-                // 在这里处理按钮点击事件
+                Get.offAndToNamed(routeLogin);
               },
             ),
           ),
