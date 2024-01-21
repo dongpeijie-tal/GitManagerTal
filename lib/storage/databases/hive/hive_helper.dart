@@ -2,6 +2,7 @@
 
 import 'dart:convert';
 import 'package:gitlabtal/data/LocalProject.dart';
+import 'package:gitlabtal/data/ProjectEntity.dart';
 import 'package:hive/hive.dart';
 
 class HiveHelper {
@@ -61,5 +62,13 @@ class HiveHelper {
     await executeLocalProjectDb((db)async{
       await db.deleteAll(await db.getAllKeys());
     });
+  }
+  /// 是否已经保存到本地了
+  Future<bool> isSaveLocalProject(ProjectEntity temp) async{
+    var result = false;
+    await executeLocalProjectDb((db)async{
+      result = await db.get(temp.id.toString()) != null;
+    });
+    return result;
   }
 }

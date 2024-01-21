@@ -33,7 +33,7 @@ class RepositoryWidget extends StatefulWidget {
 class _RepositoryWidgetState extends State<RepositoryWidget> {
   RepositoryController controller = Get.find();
   final PagingController<int, ProjectEntity> _pagingController =
-      PagingController(firstPageKey: 0,invisibleItemsThreshold: 2);
+      PagingController(firstPageKey: 1,invisibleItemsThreshold: 2);
   @override
   void initState() {
     super.initState();
@@ -93,7 +93,7 @@ class _RepositoryWidgetState extends State<RepositoryWidget> {
             pagingController: _pagingController,
             builderDelegate: PagedChildBuilderDelegate<ProjectEntity>(
               itemBuilder: (context, item, index) =>
-                  _buildItem(item, controller),
+                  _buildItem(index,item, controller,_pagingController),
                 firstPageProgressIndicatorBuilder:(context) => const LoadingInnerWidget(),
             ),
           ),),
@@ -102,7 +102,7 @@ class _RepositoryWidgetState extends State<RepositoryWidget> {
     );
   }
 
-  Widget _buildItem(ProjectEntity item, RepositoryController controller) {
-    return RepositoryCardItem(item: item, controller: controller);
+  Widget _buildItem(int index,ProjectEntity item, RepositoryController controller, PagingController<int, ProjectEntity> pagingController) {
+    return RepositoryCardItem(index: index,item: item, controller: controller,pagingController: pagingController);
   }
 }

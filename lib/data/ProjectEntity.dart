@@ -42,6 +42,7 @@
 /// permissions : {"project_access":null,"group_access":{"access_level":30,"notification_level":3}}
 
 class ProjectEntity {
+
   ProjectEntity({
     int? id,
     String? description,
@@ -83,6 +84,7 @@ class ProjectEntity {
     bool? printingMergeRequestLinkEnabled,
     String? mergeMethod,
     Permissions? permissions,
+    bool? isSaveLocal,// 是否已经保存本地
   }) {
     _id = id;
     _description = description;
@@ -125,6 +127,7 @@ class ProjectEntity {
     _printingMergeRequestLinkEnabled = printingMergeRequestLinkEnabled;
     _mergeMethod = mergeMethod;
     _permissions = permissions;
+    _isSaveLocal = isSaveLocal;
   }
 
   ProjectEntity.fromJson(dynamic json) {
@@ -216,6 +219,7 @@ class ProjectEntity {
   bool? _printingMergeRequestLinkEnabled;
   String? _mergeMethod;
   Permissions? _permissions;
+  bool? _isSaveLocal;
   ProjectEntity copyWith({
     int? id,
     String? description,
@@ -257,6 +261,7 @@ class ProjectEntity {
     bool? printingMergeRequestLinkEnabled,
     String? mergeMethod,
     Permissions? permissions,
+    bool? isSaveLocal,
   }) =>
       ProjectEntity(
         id: id ?? _id,
@@ -305,6 +310,7 @@ class ProjectEntity {
             printingMergeRequestLinkEnabled ?? _printingMergeRequestLinkEnabled,
         mergeMethod: mergeMethod ?? _mergeMethod,
         permissions: permissions ?? _permissions,
+        isSaveLocal: isSaveLocal ?? _isSaveLocal,
       );
   int? get id => _id;
   String? get description => _description;
@@ -348,6 +354,11 @@ class ProjectEntity {
   bool? get printingMergeRequestLinkEnabled => _printingMergeRequestLinkEnabled;
   String? get mergeMethod => _mergeMethod;
   Permissions? get permissions => _permissions;
+  bool? get isSaveLocal => _isSaveLocal;
+
+  set isSaveLocal(bool? value) {
+    _isSaveLocal = value;
+  }
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};

@@ -20,7 +20,10 @@ class RepositoryController extends GetxController{
     // final Response response = await provider.getUser({"PRIVATE-TOKEN" : box.read(TOKEN_SIGN)});
     List<ProjectEntity> entitiesTemp = [];
     for (var element in response.body) {
-      entitiesTemp.add(ProjectEntity.fromJson(element));
+      var temp = ProjectEntity.fromJson(element);
+      bool isSave = await HiveHelper().isSaveLocalProject(temp);
+      temp.isSaveLocal = isSave;
+      entitiesTemp.add(temp);
     }
     if (!response.hasError) {
       if (entitiesTemp.isEmpty && entitiesTemp.isEmpty) {
