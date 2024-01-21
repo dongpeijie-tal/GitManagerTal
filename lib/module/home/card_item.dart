@@ -21,72 +21,55 @@ class CardItem extends StatelessWidget {
     return Card(
         // 使用Card作为背景
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 7.0, horizontal: 5.0),
-          child: Row(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(5),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(item.name ?? "未命名",
-                        style: Theme.of(context).textTheme.titleLarge),
-                    Text("地址：${item.webUrl ?? "无"}",
-                        style: Theme.of(context).textTheme.bodySmall),
-                    Text("简介：${item.createdAt ?? "无"}",
-                        style: Theme.of(context).textTheme.bodySmall),
-                    Text("文件夹：${item.dir ?? "无"}",
-                        style: Theme.of(context).textTheme.bodySmall),
-                  ],
-                ),
-              ),
-              const Spacer(),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 0.0, horizontal: 4.0),
-                child: OutlinedButton(
-                    onPressed: () {
-                      _gitClone(item.webUrl);
-                    },
-                    child: const Text("clone")),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 0.0, horizontal: 4.0),
-                child: OutlinedButton(
-                    onPressed: () {
-                      _gitFetch(item.webUrl);
-                    }, child: const Text("fetch")),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 0.0, horizontal: 4.0),
-                child: OutlinedButton(
-                    onPressed: () {
-                      _gitPull(item.webUrl);
-                    }, child: const Text("pull")),
-              ),
-            ],
+      padding: const EdgeInsets.symmetric(vertical: 7.0, horizontal: 5.0),
+      child: Row(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(5),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(item.name ?? "未命名",
+                    style: Theme.of(context).textTheme.titleLarge),
+                Text("地址：${item.webUrl ?? "无"}",
+                    style: Theme.of(context).textTheme.bodySmall),
+                Text("简介：${item.createdAt ?? "无"}",
+                    style: Theme.of(context).textTheme.bodySmall),
+                Text("文件夹：${item.dir ?? "无"}",
+                    style: Theme.of(context).textTheme.bodySmall),
+              ],
+            ),
           ),
-        ));
+          const Spacer(),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 4.0),
+            child: OutlinedButton(
+                onPressed: () {
+                  controller.gitClone(item);
+                },
+                child: const Text("clone")),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 4.0),
+            child: OutlinedButton(
+                onPressed: () {
+                  _gitFetch(item.webUrl);
+                },
+                child: const Text("fetch")),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 4.0),
+            child: OutlinedButton(
+                onPressed: () {
+                  _gitPull(item.webUrl);
+                },
+                child: const Text("pull")),
+          ),
+        ],
+      ),
+    ));
   }
-  /// 克隆实现
-  void _gitClone(String? sshUrlToRepo) async {
-    final String? directoryPath = await FilePicker.platform.getDirectoryPath();
-    if (directoryPath == null) {
-      return;
-    }
-    if (sshUrlToRepo == null || sshUrlToRepo.isEmpty) {
-      Get.snackbar("错误", "该仓库没有ssh地址。");
-      return;
-    }
-    // TODO 实现方式更换
-    cloneRepo(sshUrlToRepo, directoryPath, () {
-      Get.snackbar("clone", "成功！");
-    }, (msg) {
-      Get.snackbar("clone", "失败..因为-->$msg");
-    });
-  }
+
 
   /// 拉取实现
   void _gitFetch(String? sshUrlToRepo) async {
@@ -105,6 +88,7 @@ class CardItem extends StatelessWidget {
       Get.snackbar("clone", "失败..因为-->$msg");
     });
   }
+
   /// 同步实现
   void _gitPull(String? sshUrlToRepo) async {
     if (sshUrlToRepo == null || sshUrlToRepo.isEmpty) {

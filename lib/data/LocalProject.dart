@@ -66,6 +66,10 @@ class LocalProject extends HiveObject{
 
   String? get dir => _dir;
 
+  set dir(String? value) {
+    _dir = value;
+  }
+
   String? get createdAt => _createdAt;
 
   String? get name => _name;
