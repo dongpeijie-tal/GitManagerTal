@@ -19,6 +19,7 @@ class HomeController extends GetxController with StateMixin<HomeState> {
   }
 
   Future<void> fetchData() async {
+    change(HomeState(false), status: RxStatus.loading());
     this.localProjects.clear();
     var localProjects = await HiveHelper().queryAllLocalProject();
     if (localProjects.isEmpty) {
@@ -31,6 +32,7 @@ class HomeController extends GetxController with StateMixin<HomeState> {
 
   Future<void> deleteAll() async {
     await HiveHelper().deleteAllLocalProject();
+    fetchData();
   }
 
   /// 清空账号

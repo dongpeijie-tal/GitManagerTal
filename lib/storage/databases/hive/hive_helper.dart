@@ -17,10 +17,17 @@ class HiveHelper {
 
   /// 执行LocalProject《数据库》存储
   Future<void> executeLocalProjectDb(Future<void> Function(CollectionBox<Map>) runner) async {
-    final collection = await BoxCollection.open('MyBox', {'local_project'},);
-    final db = await collection.openBox<Map>('local_project',preload: true);
-    await runner(db);
-    collection.close();
+    BoxCollection? collection;
+    try{
+      collection = await BoxCollection.open('MyBox', {'local_project'},);
+      final db = await collection.openBox<Map>('local_project',preload: true);
+      await runner(db);
+    }catch(e){
+
+    }finally{
+      collection?.close();
+      collection = null;
+    }
   }
 
   /// 插入一条LocalProject
@@ -44,7 +51,6 @@ class HiveHelper {
         }
       }
     });
-    print("存储内容：${jsonEncode(result)}");
     return result;
   }
 

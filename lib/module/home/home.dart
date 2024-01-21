@@ -75,7 +75,9 @@ class HomeWrapperWidget extends GetView<HomeController> {
                         height: 24,
                         color: AppColors().getColor(ColorName.primary),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        controller.deleteAll();
+                      },
                     ),
                   ),
                   Tooltip(
