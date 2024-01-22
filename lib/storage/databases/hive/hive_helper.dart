@@ -1,6 +1,7 @@
 
 
 import 'dart:convert';
+import 'package:get/get.dart';
 import 'package:gitlabtal/data/LocalProject.dart';
 import 'package:gitlabtal/data/ProjectEntity.dart';
 import 'package:hive/hive.dart';
@@ -23,7 +24,7 @@ class HiveHelper {
       final db = await collection.openBox<Map>('local_project',preload: true);
       await runner(db);
     }catch(e){
-
+      e.printError();
     }finally{
       collection?.close();
       collection = null;

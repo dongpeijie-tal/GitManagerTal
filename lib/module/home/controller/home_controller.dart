@@ -84,12 +84,14 @@ class HomeController extends GetxController with StateMixin<HomeState> {
     }
     project.dir = directoryPath;
     await insertLocalProject(project);
+    gitLogs.clear();
     showGitLogDialog(this);
     await _cloneRepo([project]);
   }
 
   Future<void> gitCloneAll() async {
     if(localProjects.isNotEmpty){
+      gitLogs.clear();
       showGitLogDialog(this);
       await _cloneRepo(localProjects);
     }
