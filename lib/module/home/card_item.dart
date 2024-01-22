@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gitlabtal/data/LocalProject.dart';
 import 'package:gitlabtal/data/ProjectEntity.dart';
+import 'package:gitlabtal/theme/color_style.dart';
 import '../../top/method/git_method.dart';
 import 'controller/home_controller.dart';
 
@@ -35,8 +36,24 @@ class CardItem extends StatelessWidget {
                     style: Theme.of(context).textTheme.bodySmall),
                 Text("简介：${item.createdAt ?? "无"}",
                     style: Theme.of(context).textTheme.bodySmall),
-                Text("文件夹：${item.dir ?? "无"}",
-                    style: Theme.of(context).textTheme.bodySmall),
+                Row(
+                  children: [
+                    Text("文件夹：", style: Theme.of(context).textTheme.bodySmall),
+                    MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        onTap: () {
+                          controller.changeLocalProjectDir(item);
+                        },
+                        child: Text(
+                          "${item.dir?.isEmpty == true ? "无" : item.dir}",
+                          style: TextStyle(
+                              color: AppColors().getColor(ColorName.blue)),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
@@ -69,7 +86,6 @@ class CardItem extends StatelessWidget {
       ),
     ));
   }
-
 
   /// 拉取实现
   void _gitFetch(String? sshUrlToRepo) async {

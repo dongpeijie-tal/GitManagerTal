@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gitlabtal/data/LocalProject.dart';
-import 'package:gitlabtal/module/home/state/state_widget.dart';
-import 'package:gitlabtal/module/login/login.dart';
-import 'package:gitlabtal/module/repository/repository.dart';
 import 'package:gitlabtal/route/route_const.dart';
 import 'package:gitlabtal/theme/color_style.dart';
 import '../../custom/widget/empty_widget.dart';
 import '../../custom/widget/error_widget.dart';
 import '../../custom/widget/loading_widget.dart';
-import '../../data/ProjectEntity.dart';
 import 'card_item.dart';
 import 'controller/home_controller.dart';
 
@@ -106,7 +102,9 @@ class HomeWrapperWidget extends GetView<HomeController> {
                         height: 24,
                         color: AppColors().getColor(ColorName.primary),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        controller.gitPullAll();
+                      },
                     ),
                   ),
                   Tooltip(
