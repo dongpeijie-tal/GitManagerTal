@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:gitlabtal/custom/dialog/GitLogDialog.dart';
 import 'package:gitlabtal/data/LocalProject.dart';
+import 'package:gitlabtal/git/gittal.dart';
 import 'package:gitlabtal/provider/user_provider.dart';
 import 'package:gitlabtal/storage/databases/hive/hive_helper.dart';
 import 'package:gitlabtal/top/bean/git_const.dart';
@@ -80,7 +81,10 @@ class HomeController extends GetxController with StateMixin<HomeState> {
   }
 
   /// 克隆实现
-  void gitClone(LocalProject project) {
+  void gitCloneInner(LocalProject project) {
+    print(project.webUrl);
+    gitClone(project.dir!+Platform.pathSeparator+"code", project.webUrl!);
+    return;
     Log.d("开始Clone...");
     if (project.dir?.isNotEmpty == false) {
       Log.d("更新文件夹位置..");

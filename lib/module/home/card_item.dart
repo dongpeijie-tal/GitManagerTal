@@ -62,7 +62,7 @@ class CardItem extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 4.0),
             child: OutlinedButton(
                 onPressed: () {
-                  controller.gitClone(item);
+                  controller.gitCloneInner(item);
                 },
                 child: const Text("clone")),
           ),

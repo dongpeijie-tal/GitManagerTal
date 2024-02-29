@@ -47,7 +47,7 @@ class RepositoryController extends GetxController{
         dir: "",
         createdAt: item.createdAt,
         name: item.name,
-        webUrl: item.sshUrlToRepo,
+        webUrl: item.httpUrlToRepo,
         rawJson: jsonEncode(item.toJson()));
     await showProgressDialog("添加成功","添加失败","此仓库已添加您的关注列表！","抱歉，因为一些意外，重新试试？",()=>HiveHelper().insertLocalProject(localProject));
     return;
