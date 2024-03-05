@@ -1,6 +1,8 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:gitlabtal/module/setting/controller/setting_controller.dart';
 import 'package:gitlabtal/route/route_const.dart';
 import 'package:gitlabtal/ui/HomePage.dart';
 import 'package:gitlabtal/ui/LoginPage.dart';
@@ -8,22 +10,27 @@ import 'package:gitlabtal/ui/SplashPage.dart';
 
 void main() async {
   await GetStorage.init();
-  runApp(FluentApp(
-    title: "GitTAL",
-    routes: {
-      splashPage : (context) => const SplashPage(),
-      loginPage : (context) => LoginPage(),
-      homePage: (context) => HomePage(),
-    },
-    theme: FluentThemeData(
-      brightness: Brightness.light,
+  final settingControl = Get.put(SettingController());
+  runApp(
+    Obx(
+      () => FluentApp(
+        title: "GitTAL",
+        routes: {
+          splashPage: (context) => const SplashPage(),
+          loginPage: (context) => LoginPage(),
+          homePage: (context) => HomePage(),
+        },
+        theme: FluentThemeData(
+          brightness: Brightness.light,
+        ),
+        darkTheme: FluentThemeData(
+          brightness: Brightness.dark,
+        ),
+        themeMode: settingControl.darkMode.value ? ThemeMode.dark : ThemeMode.light,
+        initialRoute: splashPage,
+      ),
     ),
-    darkTheme: FluentThemeData(
-      brightness: Brightness.dark,
-    ),
-    themeMode: ThemeMode.dark,
-    initialRoute: splashPage,
-  ));
+  );
   //     GetMaterialApp(
   //   theme: AppTheme.lightThemeData,
   //   darkTheme: AppTheme.darkThemeData,

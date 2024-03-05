@@ -14,15 +14,18 @@ import 'package:gitlabtal/utils/log.dart';
 import '../state/state_widget.dart';
 
 class HomeController extends GetxController with StateMixin<HomeState> {
-  final provider = Get.find<UserProvider>();
+  // final provider = Get.find<UserProvider>();
+  var selectPage = 0;
+
+
   var localProjects = List<LocalProject>.empty(growable: true).obs;
   final box = GetStorage();
 
-  @override
-  void onInit() {
-    fetchData();
-    super.onInit();
-  }
+  // @override
+  // void onInit() {
+  //   fetchData();
+  //   super.onInit();
+  // }
 
   Future<void> fetchData() async {
     change(HomeState(false), status: RxStatus.loading());
