@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:fluent_ui/fluent_ui.dart';
 
 /// 进度条页面
 class LoadingInnerWidget extends StatelessWidget {
@@ -11,9 +11,9 @@ class LoadingInnerWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const CircularProgressIndicator(),
+          const ProgressRing(),
           const SizedBox(height: 10),
-          Text("疯狂加载中",style: Theme.of(context).textTheme.bodyMedium,),
+          Text("疯狂加载中",style: FluentTheme.of(context).typography.body,),
         ],
       ),
     );
