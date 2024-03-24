@@ -52,6 +52,19 @@ class RepositoryController extends GetxController{
     await showProgressDialog("添加成功","添加失败","此仓库已添加您的关注列表！","抱歉，因为一些意外，重新试试？",()=>HiveHelper().insertLocalProject(localProject));
     return;
   }
+
+  var searchProjects = List<ProjectEntity>.empty(growable: true).obs;
+  /// 搜索仓库
+  Future<void> searchProject(String text) async {
+    searchProjects.clear();
+    var response = await provider.searchProjects({'scope':'projects','search':text,"private_token": "xL8AdreZ2HZ4EA5SP-pw"});
+    List<ProjectEntity> entitiesTemp = [];
+    for (var element in response.body) {
+      entitiesTemp.add(ProjectEntity.fromJson(element));
+    }
+    searchProjects.addAll(entitiesTemp);
+  }
+
 }
 
 /// 被观察的状态

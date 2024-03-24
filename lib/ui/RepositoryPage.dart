@@ -15,7 +15,7 @@ class RepositoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScaffoldPage.withPadding(
-      padding: EdgeInsets.all(0),
+      padding: const EdgeInsets.all(0),
       content: RepositoryWidget(),
     );
   }
@@ -68,7 +68,7 @@ class _RepositoryWidgetState extends State<RepositoryWidget> {
           child: TextBox(
             textInputAction: TextInputAction.search,
             onChanged: (s){
-              // TODO 查找对应的库
+              controller.searchProject(s);
             },
             prefix: const Padding(
               padding: EdgeInsets.symmetric(horizontal: 10),
@@ -77,15 +77,6 @@ class _RepositoryWidgetState extends State<RepositoryWidget> {
             placeholder: '根据仓库名搜索',
           ),
         ),
-        // Row(
-        //   mainAxisSize: MainAxisSize.min,
-        //   children: [
-        //     TextBox(
-        //       placeholder: '根据仓库名搜索',
-        //     ),
-        //     IconButton(onPressed: (){}, icon: const Icon(FluentIcons.search))
-        //   ],
-        // ),
         Flexible(
           fit: FlexFit.loose,
           child: Padding(

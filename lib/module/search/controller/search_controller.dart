@@ -1,4 +1,3 @@
-
 import 'package:get/get.dart';
 import 'package:gitlabtal/data/ProjectEntity.dart';
 import 'package:gitlabtal/provider/search_provider.dart';
